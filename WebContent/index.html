@@ -1,10 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>PACP</title>
+<!-- Required meta tags -->
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>PACP</title>
+
+<!-- Dependencias de angular -->
+<script src="./js/angular-1-7-7.js" type="text/javascript"></script>
+<script src="./js/angular-route-1-7-7.js" type="text/javascript"></script>
+
+<!-- Bootstrap CSS-->
+<link rel="stylesheet" href="./css/bootstrap.min.css">
+
+<!-- Menú CSS -->
+<link rel="stylesheet" href="./css/menu-propio.css">
+
+<!-- Iconos -->
+<link href="./icons/material-icons.css" rel="stylesheet"> <!--load all styles -->
+
+
 </head>
-<body>
-    <h1>Titulo principal</h1>
+<body ng-app="app">
+
+	<!-- menú -->
+	<header ng-controller="appMenu" class="contenedor-menu">
+		<div class="header-content">
+			<div class="logo">
+				<h4>Parking<b>Access</b></h4>
+			</div>
+			
+			<div class="menu" id="show-menu">
+				<nav>
+					<ul>
+						<li><a class="menu-select text-menu-selected" href="#/">Inicio</a></li>
+						<li><a href="#/">Detalles</a></li>
+						<li><a href="#/">Perfil</a></li>
+						<li><a href="#/">Permisos</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		
+		<div id="icon-menu">
+			<span class="material-icons">menu</span>
+		</div>
+	</header>
+	<!-- FIN menú -->
+
+	<div class="container-fluid container-all" id="move-content">
+		<div ng-view></div>
+	</div>
+
+	<!-- LIBRERIAS JS -->
+	<script src="./app.js" type="text/javascript"></script>
+	<!-- JQuery -->
+	<script src="./js/jquery-3.4.1.slim.min.js" type="text/javascript"></script>
+	<!-- Popper -->
+	<script src="./js/popper.js" type="text/javascript"></script>
+	<!-- Bootstrap JS-->
+	<script src="./js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!-- ANGULAR JS -->
+	<script type="text/javascript" src="./app.js"></script>
+	
+	<!-- Menú -->
+	<script src="./js/menu.js" type="text/javascript">
+<!--
+
+//-->
+</script>
 </body>
 </html>
