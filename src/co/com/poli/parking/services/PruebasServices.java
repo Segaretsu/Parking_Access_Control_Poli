@@ -1,5 +1,6 @@
 package co.com.poli.parking.services;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -18,7 +19,7 @@ public class PruebasServices {
 		return "El servidor se encuentra melo";
 	}
 	
-	@GET
+	@POST
 	@Path("nombreEnviado/{username}")
     @Produces("text/plain")
     public String getNombreEjemplo(@PathParam("username") String nombre) {

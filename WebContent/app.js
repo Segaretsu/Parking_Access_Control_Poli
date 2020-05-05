@@ -16,6 +16,11 @@ app.config(function($routeProvider, $locationProvider){
             controllerAs: "ctx",
             templateUrl: "./plugins/productos-component/productos-component.html"
         })
+        .when("/registro", {
+            controller: "registroController",
+            controllerAs: "ctx",
+            templateUrl: "./plugins/registro-plugin/registro-plugin.html"
+        })
         .otherwise({
             redirectTo: '/'
         });
@@ -23,26 +28,26 @@ app.config(function($routeProvider, $locationProvider){
 
 
 app.controller("appCtrl", ['$scope', '$http', function ($scope, $http){
-	/** Definición de variables*/
+	/** Definiciï¿½n de variables*/
 	ctx = $scope;
 }]);
 
 app.controller("appMenu", ['$scope', function ($scope){
-	/** Definición de variables */
+	/** Definiciï¿½n de variables */
 	ctx = $scope;
 	ctx.pantallaActual = 'Inicio';
 	var URLactual = window.location;
-	/** Definición de métodos */
+	/** Definiciï¿½n de mï¿½todos */
 	ctx.cerrarSession = cerrarSession;
 	ctx.setNombrePantallaActual = setNombrePantallaActual;
 	
-	//toda el código del controlador de inicio aquí
+	//toda el cï¿½digo del controlador de inicio aquï¿½
     this.$onInit = function () {
     	ctx.setNombrePantallaActual();
     }
     
     
-    /** Creación de Métodos */
+    /** Creaciï¿½n de Mï¿½todos */
     function cerrarSession() {
 		localStorage.clear();
     	location.href="http://localhost:8080/Parking_Access_Control_Poli/";
