@@ -2,8 +2,6 @@
 
 var app = angular.module("app", ["ngRoute"]);
 
-
-
 app.config(function($routeProvider, $locationProvider){
     $routeProvider
         .when("/", {
@@ -28,26 +26,26 @@ app.config(function($routeProvider, $locationProvider){
 
 
 app.controller("appCtrl", ['$scope', '$http', function ($scope, $http){
-	/** Definici�n de variables*/
+	/** Definicion de variables*/
 	ctx = $scope;
 }]);
 
 app.controller("appMenu", ['$scope', function ($scope){
-	/** Definici�n de variables */
+	/** Definicion de variables */
 	ctx = $scope;
 	ctx.pantallaActual = 'Inicio';
 	var URLactual = window.location;
-	/** Definici�n de m�todos */
+	/** Definicion de metodos */
 	ctx.cerrarSession = cerrarSession;
 	ctx.setNombrePantallaActual = setNombrePantallaActual;
 	
-	//toda el c�digo del controlador de inicio aqu�
+	//toda el codigo del controlador de inicio aqu�
     this.$onInit = function () {
     	ctx.setNombrePantallaActual();
     }
     
     
-    /** Creaci�n de M�todos */
+    /** Creacion de Metodos */
     function cerrarSession() {
 		localStorage.clear();
     	location.href="http://localhost:8080/Parking_Access_Control_Poli/";

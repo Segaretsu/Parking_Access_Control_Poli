@@ -205,3 +205,4 @@ dist/
 temp/
 
 # End of https://www.gitignore.io/api/node,java,eclipse,java-web 
+/build/

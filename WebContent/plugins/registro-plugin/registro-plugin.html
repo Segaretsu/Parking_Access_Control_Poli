@@ -1,5 +1,42 @@
-<input type="text" ng-model="nombre">
-<h1 ng-if="mostrar">JAJAJAJ YA SABEMOS QUE JHON LO HACE SOLITO :V</h1>
-<br>
-<p>{{nombre}} {{apellido}}</p>
-<input type="button" value="Enviar nombre" ng-click="registrarNombre()">
+<div class="col-md-12">
+	<div class="form-row">
+		<div class="col-md-12 row">
+			<div class="col-md-12 align-self-center align-items-center" style="text-align: center;">
+				<span class="material-icons"
+					style="font-size: 220px; text-align: center; align-items: center; color: #2196F3;">
+					person_add </span>
+			</div>
+			<span class="clearfix"></span>
+			<div class="col-xl-8 center-block">
+				<div class="form-group col-md-10">
+					<label for="selectTipoDocumento">Tipo de perfil:</label> <select
+						id="selectTipoDocumento" class="form-control"
+						ng-model="usuarioRegistro.idTipoPerfil">
+						<option vale="">--Seleccione un tipo de usuario--</option>
+						<option ng-repeat="tipoUsuario in listaTipoUsuarios"
+							value="{{tipoUsuario.id}}">{{tipoUsuario.name}}</option>
+					</select>
+				</div>
+				<div class="col-md-12 row">
+					<div class="col-md-6">
+						<label for="nombreUsuario">Nombre(s) de usuario:</label> <input
+							type="text" class="form-control" id="nombreUsuario">
+					</div>
+					<div class="col-md-6">
+						<label for="apellidosUsuario">Apellido(s) de usuario:</label> <input
+							type="text" class="form-control" id="apellidosUsuario">
+					</div>
+
+				</div>
+				<div class="col-md-12">
+					<label for="correoUsuario">Correo institucional:</label> <input
+						type="text" class="form-control" id="correoUsuario">
+				</div>
+			</div>
+
+		</div>
+		<div class="col-md-6"></div>
+
+
+	</div>
+</div>
