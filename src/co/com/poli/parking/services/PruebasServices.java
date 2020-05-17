@@ -5,6 +5,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import co.com.poli.parking.connection.pruebas;
+
 @Path("pruebas")
 public class PruebasServices {
 
@@ -16,7 +18,8 @@ public class PruebasServices {
 		/**
 		 * URL Ejemplo: http://localhost:8080/Parking_Access_Control_Poli/Parking-back/pruebas/server/estatus
 		 */
-		return "El servidor se encuentra melo";
+		pruebas p = new pruebas();
+		return p.insertar();
 	}
 	
 	@POST
