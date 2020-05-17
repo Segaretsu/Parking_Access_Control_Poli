@@ -14,5 +14,6 @@ public class WebServicesConfig  extends Application{
 	
 	public void addRestResourceClasses(Set<Class<?>> resources) {
 		resources.add(co.com.poli.parking.services.PruebasServices.class);
+		resources.add(co.com.poli.parking.services.UsuarioServices.class);
 	}
 }
