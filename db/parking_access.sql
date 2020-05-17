@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-05-2020 a las 05:48:51
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.5
+-- Tiempo de generación: 18-05-2020 a las 01:30:40
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,16 +19,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `parkin_acces`
+-- Base de datos: `parking_access`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `registro`
+-- Estructura de tabla para la tabla `registros`
 --
 
-CREATE TABLE `registro` (
+CREATE TABLE `registros` (
   `idRegistro` int(11) NOT NULL,
   `idVehiculo` int(11) NOT NULL,
   `FechaEntrada` date NOT NULL,
@@ -50,10 +51,10 @@ CREATE TABLE `tarjetas` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipocolor`
+-- Estructura de tabla para la tabla `tipo_colores`
 --
 
-CREATE TABLE `tipocolor` (
+CREATE TABLE `tipo_colores` (
   `idColor` int(11) NOT NULL,
   `descripcion` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -61,21 +62,28 @@ CREATE TABLE `tipocolor` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipodocumento`
+-- Estructura de tabla para la tabla `tipo_documentos`
 --
 
-CREATE TABLE `tipodocumento` (
+CREATE TABLE `tipo_documentos` (
   `idTipoDocumento` int(11) NOT NULL,
   `descripcion` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `tipo_documentos`
+--
+
+INSERT INTO `tipo_documentos` (`idTipoDocumento`, `descripcion`) VALUES
+(1, 'Cédula de Ciudadanía');
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipoestado`
+-- Estructura de tabla para la tabla `tipo_estados`
 --
 
-CREATE TABLE `tipoestado` (
+CREATE TABLE `tipo_estados` (
   `idEstado` int(11) NOT NULL,
   `descripcion` varchar(70) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -83,10 +91,10 @@ CREATE TABLE `tipoestado` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipomarca`
+-- Estructura de tabla para la tabla `tipo_marcas`
 --
 
-CREATE TABLE `tipomarca` (
+CREATE TABLE `tipo_marcas` (
   `idMarca` int(11) NOT NULL,
   `descripcion` varchar(70) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -94,21 +102,28 @@ CREATE TABLE `tipomarca` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipoperfil`
+-- Estructura de tabla para la tabla `tipo_perfiles`
 --
 
-CREATE TABLE `tipoperfil` (
+CREATE TABLE `tipo_perfiles` (
   `idTipoPerfil` int(11) NOT NULL,
   `descripcion` varchar(70) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `tipo_perfiles`
+--
+
+INSERT INTO `tipo_perfiles` (`idTipoPerfil`, `descripcion`) VALUES
+(1, 'Profesor');
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipovehiculo`
+-- Estructura de tabla para la tabla `tipo_vehiculos`
 --
 
-CREATE TABLE `tipovehiculo` (
+CREATE TABLE `tipo_vehiculos` (
   `idTipoVehiculo` int(11) NOT NULL,
   `descripcion` varchar(30) NOT NULL,
   `nombreicono` varchar(30) NOT NULL
@@ -130,6 +145,13 @@ CREATE TABLE `usuarios` (
   `correo` varchar(70) NOT NULL,
   `idTipoPerfil` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`idUsuario`, `idTipoDocumento`, `numeroDocumento`, `nombre`, `apellidos`, `telefono`, `correo`, `idTipoPerfil`) VALUES
+(12, 1, '123456', 'Armando Esteban2', 'Quito', '112233', 'prueba@prueba.com', 1);
 
 -- --------------------------------------------------------
 
@@ -155,9 +177,9 @@ CREATE TABLE `vehiculos` (
 --
 
 --
--- Indices de la tabla `registro`
+-- Indices de la tabla `registros`
 --
-ALTER TABLE `registro`
+ALTER TABLE `registros`
   ADD PRIMARY KEY (`idRegistro`),
   ADD KEY `testado` (`idEstado`),
   ADD KEY `tvehiculo` (`idVehiculo`);
@@ -170,39 +192,39 @@ ALTER TABLE `tarjetas`
   ADD KEY `estado` (`idEstado`);
 
 --
--- Indices de la tabla `tipocolor`
+-- Indices de la tabla `tipo_colores`
 --
-ALTER TABLE `tipocolor`
+ALTER TABLE `tipo_colores`
   ADD PRIMARY KEY (`idColor`);
 
 --
--- Indices de la tabla `tipodocumento`
+-- Indices de la tabla `tipo_documentos`
 --
-ALTER TABLE `tipodocumento`
+ALTER TABLE `tipo_documentos`
   ADD PRIMARY KEY (`idTipoDocumento`);
 
 --
--- Indices de la tabla `tipoestado`
+-- Indices de la tabla `tipo_estados`
 --
-ALTER TABLE `tipoestado`
+ALTER TABLE `tipo_estados`
   ADD PRIMARY KEY (`idEstado`);
 
 --
--- Indices de la tabla `tipomarca`
+-- Indices de la tabla `tipo_marcas`
 --
-ALTER TABLE `tipomarca`
+ALTER TABLE `tipo_marcas`
   ADD PRIMARY KEY (`idMarca`);
 
 --
--- Indices de la tabla `tipoperfil`
+-- Indices de la tabla `tipo_perfiles`
 --
-ALTER TABLE `tipoperfil`
+ALTER TABLE `tipo_perfiles`
   ADD PRIMARY KEY (`idTipoPerfil`);
 
 --
--- Indices de la tabla `tipovehiculo`
+-- Indices de la tabla `tipo_vehiculos`
 --
-ALTER TABLE `tipovehiculo`
+ALTER TABLE `tipo_vehiculos`
   ADD PRIMARY KEY (`idTipoVehiculo`);
 
 --
@@ -229,9 +251,9 @@ ALTER TABLE `vehiculos`
 --
 
 --
--- AUTO_INCREMENT de la tabla `registro`
+-- AUTO_INCREMENT de la tabla `registros`
 --
-ALTER TABLE `registro`
+ALTER TABLE `registros`
   MODIFY `idRegistro` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -241,46 +263,46 @@ ALTER TABLE `tarjetas`
   MODIFY `idTarjeta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tipocolor`
+-- AUTO_INCREMENT de la tabla `tipo_colores`
 --
-ALTER TABLE `tipocolor`
+ALTER TABLE `tipo_colores`
   MODIFY `idColor` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tipodocumento`
+-- AUTO_INCREMENT de la tabla `tipo_documentos`
 --
-ALTER TABLE `tipodocumento`
-  MODIFY `idTipoDocumento` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tipo_documentos`
+  MODIFY `idTipoDocumento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `tipoestado`
+-- AUTO_INCREMENT de la tabla `tipo_estados`
 --
-ALTER TABLE `tipoestado`
+ALTER TABLE `tipo_estados`
   MODIFY `idEstado` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tipomarca`
+-- AUTO_INCREMENT de la tabla `tipo_marcas`
 --
-ALTER TABLE `tipomarca`
+ALTER TABLE `tipo_marcas`
   MODIFY `idMarca` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tipoperfil`
+-- AUTO_INCREMENT de la tabla `tipo_perfiles`
 --
-ALTER TABLE `tipoperfil`
-  MODIFY `idTipoPerfil` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tipo_perfiles`
+  MODIFY `idTipoPerfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `tipovehiculo`
+-- AUTO_INCREMENT de la tabla `tipo_vehiculos`
 --
-ALTER TABLE `tipovehiculo`
+ALTER TABLE `tipo_vehiculos`
   MODIFY `idTipoVehiculo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `vehiculos`
@@ -293,34 +315,34 @@ ALTER TABLE `vehiculos`
 --
 
 --
--- Filtros para la tabla `registro`
+-- Filtros para la tabla `registros`
 --
-ALTER TABLE `registro`
-  ADD CONSTRAINT `testado` FOREIGN KEY (`idEstado`) REFERENCES `tipoestado` (`idEstado`) ON DELETE CASCADE ON UPDATE CASCADE,
+ALTER TABLE `registros`
+  ADD CONSTRAINT `testado` FOREIGN KEY (`idEstado`) REFERENCES `tipo_estados` (`idEstado`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tvehiculo` FOREIGN KEY (`idVehiculo`) REFERENCES `vehiculos` (`idvehiculo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `tarjetas`
 --
 ALTER TABLE `tarjetas`
-  ADD CONSTRAINT `estado` FOREIGN KEY (`idEstado`) REFERENCES `tipoestado` (`idEstado`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `estado` FOREIGN KEY (`idEstado`) REFERENCES `tipo_estados` (`idEstado`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD CONSTRAINT `documento` FOREIGN KEY (`idTipoDocumento`) REFERENCES `tipodocumento` (`idTipoDocumento`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `perfil` FOREIGN KEY (`idTipoPerfil`) REFERENCES `tipoperfil` (`idTipoPerfil`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `documento` FOREIGN KEY (`idTipoDocumento`) REFERENCES `tipo_documentos` (`idTipoDocumento`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `perfil` FOREIGN KEY (`idTipoPerfil`) REFERENCES `tipo_perfiles` (`idTipoPerfil`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `vehiculos`
 --
 ALTER TABLE `vehiculos`
-  ADD CONSTRAINT `color` FOREIGN KEY (`idColor`) REFERENCES `tipocolor` (`idColor`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `marca` FOREIGN KEY (`idMarca`) REFERENCES `tipomarca` (`idMarca`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `color` FOREIGN KEY (`idColor`) REFERENCES `tipo_colores` (`idColor`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `marca` FOREIGN KEY (`idMarca`) REFERENCES `tipo_marcas` (`idMarca`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tarjeta` FOREIGN KEY (`idtarjeta`) REFERENCES `tarjetas` (`idTarjeta`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `vehiculo` FOREIGN KEY (`idtipovehiculo`) REFERENCES `tipovehiculo` (`idTipoVehiculo`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `vehiculo` FOREIGN KEY (`idtipovehiculo`) REFERENCES `tipo_vehiculos` (`idTipoVehiculo`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
