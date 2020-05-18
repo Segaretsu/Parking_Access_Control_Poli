@@ -43,7 +43,7 @@ public class UsuarioServices {
 	@GET
 	@Path("consultar/idUsuario/{idUsuario}")
 	@Produces("application/json")
-	public UsuarioEntity crearUsuario(@PathParam("idUsuario") int idUsuario) {
+	public UsuarioEntity consultarUsuarioById(@PathParam("idUsuario") int idUsuario) {
 		UsuarioDaoImpl usuarioDaoImpl = new UsuarioDaoImpl();
 		return usuarioDaoImpl.getUsuarioByIdUsuario(idUsuario);
 	}

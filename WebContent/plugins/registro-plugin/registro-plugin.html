@@ -1,42 +1,58 @@
 <div class="col-md-12">
-	<div class="form-row">
-		<div class="col-md-12 row">
+	<div class="form-row formulario-centrado">
+		<div class="col-md-12 row centrar-tarjeta-usuarios">
 			<div class="col-md-12 align-self-center align-items-center"
 				style="text-align: center;">
-				<span class="material-icons"
-					style="font-size: 220px; text-align: center; align-items: center; color: #2196F3;">
-					person_add </span>
+				<span class="material-icons" id="iconoUsuario">person_outline
+				</span>
 			</div>
 			<span class="clearfix"></span>
-			<div class="col-xl-8 center-block">
-				<div class="form-group col-md-10">
-					<label for="selectTipoDocumento">Tipo de perfil:</label> <select
-						id="selectTipoDocumento" class="form-control"
-						ng-model="usuarioRegistro.idTipoPerfil">
-						<option vale="">--Seleccione un tipo de usuario--</option>
-						<option ng-repeat="tipoUsuario in listaTipoUsuarios"
-							value="{{tipoUsuario.id}}">{{tipoUsuario.name}}</option>
-					</select>
+			<div class="col-xl-12 center-block centrar-tarjeta-usuarios">
+				<div class="form-group col-md-12 row">
+					<div class="form-group col-md-6">
+						<label for="selectTipoDocumento">Tipo de perfil:</label> <select
+							id="selectTipoDocumento" class="form-control"
+							ng-model="usuarioRegistro.idTipoPerfil">
+							<option vale="">--Seleccione un tipo de usuario--</option>
+							<option ng-repeat="tipoUsuario in listaTipoUsuarios"
+								value="{{tipoUsuario.id}}">{{tipoUsuario.name}}</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<label for="telefonoUsuario">Telefono:</label> <input type="text"
+							class="form-control" id="telefonoUsuario">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-12 row">
+						<div class="col-md-6">
+							<label for="nombreUsuario">Nombre(s) de usuario:</label> <input
+								type="text" class="form-control" id="nombreUsuario">
+						</div>
+						<div class="col-md-6">
+							<label for="apellidosUsuario">Apellido(s) de usuario:</label> <input
+								type="text" class="form-control" id="apellidosUsuario">
+						</div>
+
+					</div>
 				</div>
 				<div class="col-md-12 row">
-					<div class="col-md-6">
-						<label for="nombreUsuario">Nombre(s) de usuario:</label> <input
-							type="text" class="form-control" id="nombreUsuario">
+					<div class="col-md-12 registro-centrar-input">
+						<label for="correoUsuario">Correo institucional:</label> <input
+							type="text" class="form-control" id="correoUsuario">
 					</div>
-					<div class="col-md-6">
-						<label for="apellidosUsuario">Apellido(s) de usuario:</label> <input
-							type="text" class="form-control" id="apellidosUsuario">
-					</div>
-
 				</div>
-				<div class="col-md-12">
-					<label for="correoUsuario">Correo institucional:</label> <input
-						type="text" class="form-control" id="correoUsuario">
+
+				<div class="form-group col-md-12 row">
+					<div class="col-md-12 row contenido-derecha">
+						<div class="col-md-12 contenido-derecha">
+						    <button type="button" class="btn btn-success boton-registrar">Registrar</button>
+							<button type="button" class="btn btn-outline-secondary boton-cancelar">Cancelar</button>
+						</div>
+					</div>
 				</div>
 			</div>
-
 		</div>
-		<div class="col-md-6"></div>
 
 
 	</div>
