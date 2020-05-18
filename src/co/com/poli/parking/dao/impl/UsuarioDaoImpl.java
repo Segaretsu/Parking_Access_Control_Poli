@@ -54,7 +54,6 @@ public class UsuarioDaoImpl implements UsuarioDao{
 	@Override
 	public UsuarioEntity getUsuarioByIdUsuario(int idUsuario) {
 		ConnectionDataBase conexion = new ConnectionDataBase();
-		System.out.println("id: " + idUsuario);
 		String query = "SELECT idTipoDocumento, numeroDocumento, nombre, apellidos, telefono, correo, idTipoPerfil FROM usuarios us WHERE us.idUsuario = '" + idUsuario + "'";
 		UsuarioEntity usuario = null;
 		try (Connection con = conexion.getCon();
