@@ -33,7 +33,7 @@
 	<header ng-controller="appMenu" class="contenedor-menu">
 		<div class="header-content">
 			<div class="logo">
-				<h4>
+				<h4 id = "logo-text">
 					Parking<b>Access</b>
 				</h4>
 			</div>
@@ -51,7 +51,7 @@
 		</div>
 
 		<div id="icon-menu">
-			<span class="material-icons">menu</span>
+			<button type="button" class="btn btn-outline-light">Acceso Vehículo</button>
 		</div>
 	</header>
 	<!-- FIN menú -->
@@ -66,6 +66,7 @@
 <!-- 			</button> -->
 <!-- 		</div> -->
 		<div ng-view></div>
+		
 	</div>
 
 	<!-- JQuery -->
@@ -79,8 +80,9 @@
 
 	<!-- ANGULAR JS -->
 	<script type="text/javascript" src="./app.js"></script>
-	<script type="text/javascript"
-		src="./plugins/registro-plugin/registro/registro-controller-plugin.js"></script>
+	<script type="text/javascript" src="./plugins/registro-plugin/registro/registro-controller-plugin.js"></script>
+	<script type="text/javascript" src="./plugins/acceso-vehiculo-plugin/informacion/acceso-vehiculo-informacion.js"></script>
+
 	<!-- Menú -->
 	<script src="./js/menu.js" type="text/javascript">
 		
