@@ -5,6 +5,8 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.Consumes;
 
 import co.com.poli.parking.dao.impl.UsuarioDaoImpl;
 import co.com.poli.parking.models.entity.UsuarioEntity;
@@ -16,19 +18,22 @@ public class UsuarioServices {
 	/**
 	 * URL Ejemplo: http://localhost:8080/Parking_Access_Control_Poli/Parking-back/usuario/crear
 	 */
-	@GET
+	@POST
 	@Path("crear")
-	@Produces("text/plain")
-	public int crearUsuario() {
-		UsuarioEntity usuario = UsuarioEntity.Builder.newInstance()
-				.withIdTipoDocumento(1)
-				.withIdTipoPerfil(1)
-				.withNumeroDocumento("123456")
-				.withNombre("Armando Esteban")
-				.withApellidos("Quito")
-				.withTelefono("112233")
-				.withCorreo("prueba@prueba.com")
-				.build();
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public int crearUsuario(UsuarioEntity usuario) {
+//		UsuarioEntity usuario = UsuarioEntity.Builder.newInstance()
+//				.withIdTipoDocumento(1)
+//				.withIdTipoPerfil(1)
+//				.withNumeroDocumento("123456")
+//				.withNombre("Armando Esteban")
+//				.withApellidos("Quito")
+//				.withTelefono("112233")
+//				.withCorreo("prueba@prueba.com")
+//				.build();
+		
+		
 		UsuarioDaoImpl usuarioDaoImpl = new UsuarioDaoImpl();
 		if(usuarioDaoImpl.registrarUsuario(usuario)) {
 			return usuario.getIdUsuario();

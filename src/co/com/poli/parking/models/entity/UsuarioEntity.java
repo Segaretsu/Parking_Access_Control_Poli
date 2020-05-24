@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+
 
 @Entity
 @Table(name = "usuarios")
@@ -34,6 +36,10 @@ public class UsuarioEntity {
 	
 	@Column(name = "correo")
 	private String correo;
+	
+	public UsuarioEntity () {
+		
+	}
 	
     public int getIdUsuario() {
 		return idUsuario;

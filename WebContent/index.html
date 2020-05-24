@@ -10,6 +10,7 @@
 <!-- Dependencias de angular -->
 <script src="./js/angular-1-7-7.js" type="text/javascript"></script>
 <script src="./js/angular-route-1-7-7.js" type="text/javascript"></script>
+<script src="./constantes.js" type="text/javascript"></script>
 
 <!-- Bootstrap CSS-->
 <link rel="stylesheet" href="./css/bootstrap.min.css">
@@ -17,10 +18,12 @@
 <!-- CSS -->
 <link rel="stylesheet" href="./css/menu-propio.css">
 <link rel="stylesheet" href="./css/generales.css">
-<link rel="stylesheet" href="./plugins/registro-plugin/registro-plugin.css">
-
+<link rel="stylesheet"
+	href="./plugins/registro-plugin/registro/registro-plugin.css">
+<link rel="stylesheet" href="./plugins/inicio-plugin/inicio-plugin.css">
 <!-- Iconos -->
-<link href="./icons/material-icons.css" rel="stylesheet"> <!--load all styles -->
+<link href="./icons/material-icons.css" rel="stylesheet">
+<!--load all styles -->
 
 
 </head>
@@ -30,21 +33,23 @@
 	<header ng-controller="appMenu" class="contenedor-menu">
 		<div class="header-content">
 			<div class="logo">
-				<h4>Parking<b>Access</b></h4>
+				<h4>
+					Parking<b>Access</b>
+				</h4>
 			</div>
-			
+
 			<div class="menu" id="show-menu">
 				<nav>
 					<ul>
 						<li><a class="menu-select text-menu-selected" href="#!">Inicio</a></li>
-						<li><a href="#!registro">Registrar Vehículo</a></li>
+						<li><a href="#!panel-registro">Registrar Vehículo</a></li>
 						<li><a href="#!">Usuarios en Parqueadero</a></li>
 						<li><a href="#!">Historico Usuario</a></li>
 					</ul>
 				</nav>
 			</div>
 		</div>
-		
+
 		<div id="icon-menu">
 			<span class="material-icons">menu</span>
 		</div>
@@ -52,6 +57,14 @@
 	<!-- FIN menú -->
 
 	<div class="container-fluid container-all" id="move-content">
+<!-- 		<div id="contenedorAlertas" class="" role="alert"> -->
+<!-- 			<span id="mensajeAlerta">Holy guacamole! You should check in -->
+<!-- 				on some of those fields below.</span> -->
+<!-- 			<button type="button" class="close" data-dismiss="alert" -->
+<!-- 				aria-label="Close"> -->
+<!-- 				<span aria-hidden="true">&times;</span> -->
+<!-- 			</button> -->
+<!-- 		</div> -->
 		<div ng-view></div>
 	</div>
 
@@ -62,16 +75,19 @@
 	<!-- Bootstrap JS-->
 	<script src="./js/bootstrap.min.js" type="text/javascript"></script>
 
-<!-- ------------------------------------------------------------------------- -->
+	<!-- ------------------------------------------------------------------------- -->
 
 	<!-- ANGULAR JS -->
 	<script type="text/javascript" src="./app.js"></script>
-	<script type="text/javascript" src="./plugins/registro-plugin/registro-controller-plugin.js"></script>
+	<script type="text/javascript"
+		src="./plugins/registro-plugin/registro/registro-controller-plugin.js"></script>
 	<!-- Menú -->
 	<script src="./js/menu.js" type="text/javascript">
-
-
-//-->
-</script>
+		
+	//-->
+	</script>
+	<!-- Load Script -->
+	<script src="./plugins/alertas-plugin/alertas-plugin.js"
+		type="text/javascript"></script>
 </body>
 </html>

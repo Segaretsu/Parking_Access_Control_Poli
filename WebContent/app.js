@@ -14,11 +14,15 @@ app.config(function($routeProvider, $locationProvider){
             controllerAs: "ctx",
             templateUrl: "./plugins/productos-component/productos-component.html"
         })
+        .when("/panel-registro", {
+            templateUrl: "./plugins/registro-plugin/registro-panel-control.html"
+        })
         .when("/registro", {
             controller: "registroController",
             controllerAs: "ctx",
-            templateUrl: "./plugins/registro-plugin/registro-plugin.html"
+            templateUrl: "./plugins/registro-plugin/registro/registro-plugin.html"
         })
+        
         .otherwise({
             redirectTo: '/'
         });

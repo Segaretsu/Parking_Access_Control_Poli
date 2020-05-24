@@ -1,0 +1,98 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.contenedor{
+    width: 90%;
+    max-width:900px;
+    margin: auto;
+    margin-top: 3%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.tabla{
+    width: 40%;
+    height: 500px;
+    margin: auto;
+    border:1px solid #dbf4f5;
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px 0px  #dbf4f5;
+    padding: 60px;
+    text-align: center;
+    color: #343759;
+    background-color: #ffffff;
+}
+
+.tabla>h2{
+    font-size:25px;
+    margin-bottom:25px;
+}
+
+.tabla img{
+   
+    margin-bottom:35px;
+}
+
+
+
+.tabla > p{
+    display: block;
+    margin-bottom:20px;
+}
+
+a.boton{
+    display:inline-block;
+    width: 150px;
+    padding:12px;
+    background: #337ab7;
+    text-decoration: none;
+    color: #ffffff;
+    border-radius: 100px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    margin: auto;
+}
+
+.tabla:hover{
+   
+    color: #000000;
+    transition: .5s all;
+    transform: scale(1.1);
+    cursor: pointer;
+
+}
+
+
+@media screen and (max-width: 1000px){
+    .tabla{
+        width: 45%;
+        max-width:none;
+        margin-bottom: 40px;
+        flex-grow: initial;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .tabla{
+        width: 45%;
+        padding:30px;
+    }
+    .tabla > h2{
+        margin-top:40px;
+    }
+}
+
+@media screen and (max-width:550px){
+    .tabla{
+        width: 85%;
+        padding: 20px;
+    }
+}

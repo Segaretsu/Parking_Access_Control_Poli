@@ -11,16 +11,34 @@
 				<div class="form-group col-md-12 row">
 					<div class="form-group col-md-6">
 						<label for="selectTipoDocumento">Tipo de perfil:</label> <select
-							id="selectTipoDocumento" class="form-control"
-							ng-model="usuarioRegistro.idTipoPerfil">
-							<option vale="">--Seleccione un tipo de usuario--</option>
+							id="selectTipoDocumento" class="form-control">
+							<option vale="0">--Seleccione un tipo de usuario--</option>
 							<option ng-repeat="tipoUsuario in listaTipoUsuarios"
 								value="{{tipoUsuario.id}}">{{tipoUsuario.name}}</option>
 						</select>
 					</div>
-					<div class="col-md-6">
-						<label for="telefonoUsuario">Telefono:</label> <input type="text"
-							class="form-control" id="telefonoUsuario">
+
+					<div class="form-group col-md-6">
+						<label for="tipoDocumento">Tipo de documento:</label> <select
+							id="tipoDocumento" class="form-control">
+							<option vale="0">--Seleccione un tipo de documento--</option>
+							<option ng-repeat="tipoDocumento in listaTipoDocumentos"
+								value="{{tipoDocumento.id}}">{{tipoDocumento.name}}</option>
+						</select>
+					</div>
+
+				</div>
+				<div class="form-group">
+					<div class="col-md-12 row">
+
+						<div class="col-md-6">
+							<label for="numeroDocumento">N&uacute;mero documento:</label> <input
+								type="text" class="form-control" id="numeroDocumento">
+						</div>
+						<div class="col-md-6">
+							<label for="telefonoUsuario">Telefono:</label> <input type="text"
+								class="form-control" id="telefonoUsuario">
+						</div>
 					</div>
 				</div>
 				<div class="form-group">
@@ -46,8 +64,11 @@
 				<div class="form-group col-md-12 row">
 					<div class="col-md-12 row contenido-derecha">
 						<div class="col-md-12 contenido-derecha">
-						    <button type="button" class="btn btn-success boton-registrar">Registrar</button>
-							<button type="button" class="btn btn-outline-secondary boton-cancelar">Cancelar</button>
+							<button type="button" class="btn btn-success boton-registrar"
+								ng-click="registrarUsuario()">Siguiente</button>
+							<button type="button"
+								onclick="window.location.href = $CONFIG.url"
+								class="btn btn-outline-secondary boton-cancelar">Cancelar</button>
 						</div>
 					</div>
 				</div>
