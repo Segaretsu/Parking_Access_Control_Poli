@@ -17,6 +17,12 @@ app.config(function($routeProvider, $locationProvider){
         .when("/panel-registro", {
             templateUrl: "./plugins/registro-plugin/registro-panel-control.html"
         })
+        .when("/acceso-vehiculos", {
+            controller: "accesoVehiculoController",
+            controllerAs: "ctx",
+            templateUrl: "./plugins/acceso-vehiculo-plugin/informacion/acceso-vehiculo-informacion.html"
+        })
+
         .when("/registro", {
             controller: "registroController",
             controllerAs: "ctx",
