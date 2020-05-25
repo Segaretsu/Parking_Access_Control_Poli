@@ -1,5 +1,7 @@
 package co.com.poli.parking.models.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +12,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "usuarios")
-public class UsuarioEntity {
+public class UsuarioEntity implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1900130513311017066L;
+
 	@Id @GeneratedValue
 	@Column(name = "idUsuario")
 	private int idUsuario;
