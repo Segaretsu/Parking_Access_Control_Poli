@@ -41,6 +41,8 @@ app.controller("registroController", ['$scope', '$http', function($scope, $http)
 		
 	}
 	
+	
+	/*GETTERS AND SETTERS*/
 	function getListaTipoUsuarios () {
 		ctx.listaTipoUsuarios = [
 			{
@@ -53,10 +55,19 @@ app.controller("registroController", ['$scope', '$http', function($scope, $http)
 	function getListaTipoDocumentos () {
 		ctx.listaTipoDocumentos = [
 			{
-				"id":"1",
-				"name":"Cedula de ciudadania"
+				"idTipoDocumento":"1",
+				"descripcion":"Cedula de ciudadania"
 			}
 		];
+		
+		$http.get('/Parking_Access_Control_Poli/Parking-back/tipo/documentos').then(function(response) {
+			console.log(response)
+			if(response.status == $HTTP.Ok) {
+				ctx.listaTipoDocumentos = response.data;
+			}
+		}).catch(function(){
+			alert("Estamos en mantenimiento, vuelva más tarde por favor ;)");
+		});
 	}
 	
 	function setUsuarioRegistro() {
