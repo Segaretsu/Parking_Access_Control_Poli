@@ -1,0 +1,46 @@
+.mensaje-vehiculos-ingresados{
+  margin-left: 2%;
+  margin-top: 1%;
+  font-family: sans-serif;
+  font-size: 1.3em;
+}
+.div-row-vehiculos-ingresados{
+   background: white;
+   margin-top: 2%;
+   border-radius: 20px;
+}
+
+.div-form-row-vehiculos-ingresados{
+	width: 96%;
+    margin-right: 2%;
+}
+
+.div-ver-mas{
+	text-align: center;
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+
+.color-icono-verde{
+	color:#58FA58;
+}
+.color-icono-rojo{
+	color:red;
+}
+
+.color-icono-tv{
+	color:#45C1FF;
+}
+
+.centrar-icono-ojo-verde{
+	margin-left: 14.5%;;
+}
+.centar-icono-ojo-azul{
+	margin-left: 17%;
+}
+.border-radius-defecto{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}

@@ -1,1 +1,81 @@
-<p>{{nospi}}</p>
+<div class="container">
+  <div class="row div-row-vehiculos-ingresados">
+    <label class = "mensaje-vehiculos-ingresados">Ultimos vehiculos en ingresar</label>
+	<div class="form-row formulario-centrado div-form-row-vehiculos-ingresados border-radius-defecto">
+		<table class="table table-striped">
+		  <thead>
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">TV</th>
+		      <th scope="col">Placa</th>
+		      <th scope="col">Color</th>
+		      <th scope="col">Modelo</th>
+		      <th scope="col">TU</th>
+		      <th scope="col">Due&ntilde;o</th>
+		      <th scope="col">Estado</th>
+		      <th scope="col">Acciones</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr ng-repeat="vehiculosDentro in listaVehiculosDentro">
+		      <th scope="row">1</th>
+		      <td><span class="material-icons color-icono-tv">{{vehiculosDentro.tv}}</span></td>
+		      <td>{{vehiculosDentro.placa}}</td>
+		      <td>{{vehiculosDentro.color}}</td>
+		      <td>{{vehiculosDentro.modelo}}</td>
+		      <td>{{vehiculosDentro.tu}}</td>
+		      <td>{{vehiculosDentro.dueno}}</td>
+		      <td><span class="material-icons color-icono-verde centrar-icono-ojo-verde">adjust</span></td>
+		      <td><span class="material-icons text-primary centar-icono-ojo-azul">remove_red_eye</span></td>
+		    </tr>
+		  </tbody>
+		</table>
+	</div>
+	<div class = "col-md-12 div-ver-mas">
+		<button type="button" class="btn btn-outline-primary">Ver m&aacute;s</button>
+	</div>
+   </div>
+</div>
+
+
+<div class="container">
+  <div class="row div-row-vehiculos-ingresados">
+    <label class = "mensaje-vehiculos-ingresados">Ultimos vehiculos en salir</label>
+	<div class="form-row formulario-centrado div-form-row-vehiculos-ingresados border-radius-defecto">
+		<table class="table">
+		  <thead>
+		    <tr >
+		      <th scope="col">#</th>
+		      <th scope="col">TV</th>
+		      <th scope="col">Placa</th>
+		      <th scope="col">Color</th>
+		      <th scope="col">Modelo</th>
+		      <th scope="col">TU</th>
+		      <th scope="col">Due&ntilde;o</th>
+		      <th scope="col">Estado</th>
+		      <th scope="col">Acciones</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr ng-repeat="vehiculosFuera in listaVehiculosFuera">
+		      <th scope="row">1</th>
+		      <td><span class="material-icons color-icono-tv">{{vehiculosFuera.tv}}</span></td>
+		      <td>{{vehiculosFuera.placa}}</td>
+		      <td>{{vehiculosFuera.color}}</td>
+		      <td>{{vehiculosFuera.modelo}}</td>
+		      <td>{{vehiculosFuera.tu}}</td>
+		      <td>{{vehiculosFuera.dueno}}</td>
+		      <td><span class="material-icons color-icono-rojo centrar-icono-ojo-verde">adjust</span></td>
+		      <td><span class="material-icons text-primary centar-icono-ojo-azul">remove_red_eye</span></td>
+		    </tr>
+		  </tbody>
+		</table>
+	</div>
+	<div class = "col-md-12 div-ver-mas">
+		<button type="button" class="btn btn-outline-primary">Ver m&aacute;s</button>
+	</div>
+   </div>
+   <div>
+   	  <button type="button" class="btn btn-info">ACEPTAR</button>
+   </div>
+</div>
