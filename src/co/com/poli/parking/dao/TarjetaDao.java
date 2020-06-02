@@ -7,4 +7,6 @@ public interface TarjetaDao {
 	public boolean registrarTarjeta(TarjetaEntity tarjeta);
 	
 	public TarjetaEntity getTarjetaDeVehiculoByPlaca(String placa);
+	
+	public TarjetaEntity getTarjetaById(int idTarjeta);
 }

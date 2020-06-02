@@ -11,6 +11,8 @@ public interface VehiculoDao {
 	
 	public VehiculoEntity getVehiculoByPlaca(String placa);
 	
+	public VehiculoEntity getVehiculoById(int idVehiculo);
+	
 	public List<AccesoVehiculoInformacionDto> getListaVehiculosDentro(int cantidadDatos, boolean vehiculoDentro);
 
 }

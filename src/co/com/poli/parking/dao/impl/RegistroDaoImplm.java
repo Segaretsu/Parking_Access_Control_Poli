@@ -6,10 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
 
 import co.com.poli.parking.connections.ConnectionDataBase;
 import co.com.poli.parking.dao.RegistroDao;
 import co.com.poli.parking.models.entity.RegistroEntity;
+import co.com.poli.parking.models.entity.TipoDocumentoEntity;
 
 public class RegistroDaoImplm implements RegistroDao{
 
@@ -47,6 +50,41 @@ public class RegistroDaoImplm implements RegistroDao{
 			System.out.println("Clase: " + this.getClass().getName() + "\nError: " + ex.getMessage());
 		}
 		return false;
+	}
+
+	@Override
+	public List<RegistroEntity> getUltimosVehiculos(int cantidadDatos, boolean vehiculoDentro) {
+		ConnectionDataBase conexion = new ConnectionDataBase();
+		String query = null;
+		if(vehiculoDentro) {
+			query = "SELECT * FROM `registros` WHERE idEstado = '1' ORDER BY fechaEntrada DESC LIMIT " + cantidadDatos;
+		}else {
+			query = "SELECT * FROM `registros` WHERE idEstado = '2' ORDER BY fechaEntrada DESC LIMIT " + cantidadDatos;
+		}
+		
+		List<RegistroEntity> listaRegistro= new LinkedList<RegistroEntity>();
+		try (Connection con = conexion.getCon();
+				Statement st = con.createStatement();
+				ResultSet rs = st.executeQuery(query)) {
+			while (rs.next()) {
+				RegistroEntity registro = RegistroEntity.Builder.newInstance()
+						.withIdRegistro(rs.getInt("idRegistro"))
+						.withIdVehiculo(rs.getInt("idVehiculo"))
+						.withIdTarjeta(rs.getInt("idTarjeta"))
+						.withFechaEntrada(rs.getTimestamp("fechaEntrada"))
+						.withFechaSalida(rs.getTimestamp("fechaSalida"))
+						.withIdEstado(rs.getInt("idEstado"))
+						.build();
+				listaRegistro.add(registro);
+			}
+		} catch (SQLException sqlex) {
+			System.out.println("Clase: " + this.getClass().getName() + "\nError SQL: " + sqlex.getMessage());
+			return null;
+		} catch (Exception ex) {
+			System.out.println("Clase: " + this.getClass().getName() + "\nError: " + ex.getMessage());
+			return null;
+		}
+		return listaRegistro;
 	}
 
 }
