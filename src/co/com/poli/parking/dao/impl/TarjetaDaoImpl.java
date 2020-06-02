@@ -65,4 +65,27 @@ public class TarjetaDaoImpl implements TarjetaDao {
 		return tarjeta;
 	}
 
+	@Override
+	public TarjetaEntity getTarjetaById(int idTarjeta) {
+		ConnectionDataBase conexion = new ConnectionDataBase();
+		String query = "SELECT tj.idTarjeta, tj.idEstado, tj.numeroTarjeta FROM tarjetas tj.idTarjeta = '" + idTarjeta+"'";
+		TarjetaEntity tarjeta = null;
+		try (Connection con = conexion.getCon();
+				Statement st = con.createStatement();
+				ResultSet rs = st.executeQuery(query)) {
+			if (rs.next()) {
+				tarjeta = TarjetaEntity.Builder.newInstance()
+						.withIdTarjeta(rs.getInt(idTarjeta))
+						.withIdEstado(rs.getInt("tj.idEstado"))
+						.withNumeroTarjeta(rs.getString("tj.numeroTarjeta"))
+						.build();
+			}
+		} catch (SQLException sqlex) {
+			System.out.println("Error: " + sqlex.getMessage());
+		} catch (Exception ex) {
+			System.out.println("Clase: " + this.getClass().getName() + "\nError: " + ex.getMessage());
+		}
+		return tarjeta;
+	}
+
 }
