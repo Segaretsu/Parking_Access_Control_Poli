@@ -24,7 +24,7 @@ public class TarjetaServices {
 	@Path("crear")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public int crearUsuario(TarjetaEntity tarjeta) {
+	public int crearTarjeta(TarjetaEntity tarjeta) {
 //		TarjetaEntity tarjeta = TarjetaEntity.Builder.newInstance()
 //				.withIdEstado(1)
 //				.withNumeroTarjeta("123456")
