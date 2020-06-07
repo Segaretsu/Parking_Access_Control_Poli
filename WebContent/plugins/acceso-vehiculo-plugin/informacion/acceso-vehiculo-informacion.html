@@ -19,12 +19,13 @@
 		  <tbody>
 		    <tr ng-repeat="vehiculosDentro in listaVehiculosDentro">
 		      <th scope="row">1</th>
-		      <td><span class="material-icons color-icono-tv">{{vehiculosDentro.tv}}</span></td>
+		      <td><span class="material-icons color-icono-tv">{{vehiculosDentro.iconoTipoVehiculo}}</span></td>
 		      <td>{{vehiculosDentro.placa}}</td>
-		      <td>{{vehiculosDentro.color}}</td>
+		      <td>{{vehiculosDentro.nombreColor}}</td>
 		      <td>{{vehiculosDentro.modelo}}</td>
-		      <td>{{vehiculosDentro.tu}}</td>
-		      <td>{{vehiculosDentro.dueno}}</td>
+		      <td>{{vehiculosDentro.nombreTipoUsuario}}</td>
+		      <td>{{vehiculosDentro.nombreUsuario}}</td>
+		      
 		      <td><span class="material-icons color-icono-verde centrar-icono-ojo-verde">adjust</span></td>
 		      <td><span class="material-icons text-primary centar-icono-ojo-azul">remove_red_eye</span></td>
 		    </tr>
@@ -32,7 +33,7 @@
 		</table>
 	</div>
 	<div class = "col-md-12 div-ver-mas">
-		<button type="button" class="btn btn-outline-primary">Ver m&aacute;s</button>
+		<button type="button" class="btn btn-outline-primary" ng-click="listarVehiculosDentro(cantidadDentro+5, true)">Ver m&aacute;s</button>
 	</div>
    </div>
 </div>
@@ -59,12 +60,12 @@
 		  <tbody>
 		    <tr ng-repeat="vehiculosFuera in listaVehiculosFuera">
 		      <th scope="row">1</th>
-		      <td><span class="material-icons color-icono-tv">{{vehiculosFuera.tv}}</span></td>
+		      <td><span class="material-icons color-icono-tv">{{vehiculosFuera.iconoTipoVehiculo}}</span></td>
 		      <td>{{vehiculosFuera.placa}}</td>
-		      <td>{{vehiculosFuera.color}}</td>
+		      <td>{{vehiculosFuera.nombreColor}}</td>
 		      <td>{{vehiculosFuera.modelo}}</td>
-		      <td>{{vehiculosFuera.tu}}</td>
-		      <td>{{vehiculosFuera.dueno}}</td>
+		      <td>{{vehiculosFuera.nombreTipoUsuario}}</td>
+		      <td>{{vehiculosFuera.nombreUsuario}}</td>
 		      <td><span class="material-icons color-icono-rojo centrar-icono-ojo-verde">adjust</span></td>
 		      <td><span class="material-icons text-primary centar-icono-ojo-azul">remove_red_eye</span></td>
 		    </tr>
@@ -72,7 +73,7 @@
 		</table>
 	</div>
 	<div class = "col-md-12 div-ver-mas">
-		<button type="button" class="btn btn-outline-primary">Ver m&aacute;s</button>
+		<button type="button" class="btn btn-outline-primary" ng-click="listarVehiculosDentro(cantidadFuera+5, false)">Ver m&aacute;s</button>
 	</div>
    </div>
    <div>

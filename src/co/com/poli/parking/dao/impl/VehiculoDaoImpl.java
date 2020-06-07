@@ -5,13 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.metamodel.ListAttribute;
-
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 import co.com.poli.parking.connections.ConnectionDataBase;
 import co.com.poli.parking.dao.UsuarioDao;
@@ -19,14 +18,18 @@ import co.com.poli.parking.dao.VehiculoDao;
 import co.com.poli.parking.models.dto.AccesoVehiculoInformacionDto;
 import co.com.poli.parking.models.entity.RegistroEntity;
 import co.com.poli.parking.models.entity.TarjetaEntity;
+import co.com.poli.parking.models.entity.TipoColorEntity;
+import co.com.poli.parking.models.entity.TipoPerfilEntity;
+import co.com.poli.parking.models.entity.TipoVehiculoEntity;
 import co.com.poli.parking.models.entity.UsuarioEntity;
 import co.com.poli.parking.models.entity.VehiculoEntity;
 
 public class VehiculoDaoImpl implements VehiculoDao{
     
 	private RegistroDaoImplm registroDaoImplm = new RegistroDaoImplm();
-	private VehiculoDaoImpl vehiculoDaoImpl = new VehiculoDaoImpl();
 	private UsuarioDaoImpl usuarioDaoImpl = new UsuarioDaoImpl();
+	private TiposDaoImpl tipoDaoImpl = new TiposDaoImpl();
+	
 	
 	@Override
 	public boolean registrarVehiculo(VehiculoEntity vehiculo) {
@@ -128,8 +131,10 @@ public class VehiculoDaoImpl implements VehiculoDao{
 		List<RegistroEntity> listaRegistros = registroDaoImplm.getUltimosVehiculos(cantidadDatos, vehiculoDentro);
         List<VehiculoEntity> listaVehiculos = new LinkedList<VehiculoEntity>();
 		List<UsuarioEntity> listaUsuario = new LinkedList<UsuarioEntity>();
+		List<TipoVehiculoEntity> listaTipoVehiculo = new LinkedList<TipoVehiculoEntity>();
+		List<TipoColorEntity> listaTipoColor = new LinkedList<TipoColorEntity>();
 		List<AccesoVehiculoInformacionDto> AVI = new ArrayList<AccesoVehiculoInformacionDto>();
-		
+		List<TipoPerfilEntity> listaTipoPerfil = new LinkedList<TipoPerfilEntity>();
 		
 		for (RegistroEntity registro: listaRegistros) {
 			VehiculoEntity vehiculoEntity = this.getVehiculoById(registro.getIdVehiculo());
@@ -138,36 +143,41 @@ public class VehiculoDaoImpl implements VehiculoDao{
 		
 		for (VehiculoEntity vehiculo: listaVehiculos) {
 			UsuarioEntity usuarioEntity = usuarioDaoImpl.getUsuarioByIdUsuario(vehiculo.getIdUsuario());
+			TipoColorEntity tipoColorEntity = tipoDaoImpl.getColorById(vehiculo.getIdColor());
+			TipoVehiculoEntity tipoVehiculoEntity = tipoDaoImpl.getTipoVehiculoById(vehiculo.getIdTipoVehiculo());
+			
 			listaUsuario.add(usuarioEntity);
+			listaTipoColor.add(tipoColorEntity);
+			listaTipoVehiculo.add(tipoVehiculoEntity);
+		}
+		
+		for (UsuarioEntity usuario: listaUsuario) {
+			TipoPerfilEntity tipoPerfilEntity = tipoDaoImpl.getTipoPerfilById(usuario.getIdTipoPerfil());
+			listaTipoPerfil.add(tipoPerfilEntity);
 		}
 		
 		for (int i = 0; i < listaRegistros.size(); i++) {
-			AccesoVehiculoInformacionDto aVI= AccesoVehiculoInformacionDto.Builder.newInstance()
+			AccesoVehiculoInformacionDto avIntance= AccesoVehiculoInformacionDto.Builder.newInstance()
 					.withIdUsuario(listaUsuario.get(i).getIdUsuario())
 					.withIdTarjeta(0)
 					.withNombreUsuario(listaUsuario.get(i).getNombre())
 					.withApellidosUsuario(listaUsuario.get(0).getApellidos())
-					.withIconoTipoVehiculo(null)
-					.withNombreColor(null)
+					.withIconoTipoVehiculo(listaTipoVehiculo.get(0).getNombreicono())
+					.withNombreColor(listaTipoColor.get(0).getDescripcion())
 					.withPlaca(listaVehiculos.get(i).getPlaca())
 					.withModelo(listaVehiculos.get(i).getModelo())
+					.withnombreTipoUsuario(listaTipoPerfil.get(0).getDescripcion())
+					.withHoraEntrada((Timestamp)listaRegistros.get(0).getFechaEntrada())
+					.withHoraSalida((Timestamp)listaRegistros.get(0).getFechaSalida())
 					.build();
+			
+			AVI.add(avIntance);
 		}
 		
-		return null;
+		return AVI;
 	}
 }
-/*private int idVehiculo;
-		private int idUsuario;
-		private int idTarjeta;
-		private String nombreUsuario;
-		private String apellidosUsuario;
-		private String iconoTipoVehiculo;
-		private String nombreColor;
-		private String placa;
-		private String modelo;
- * 
- * */
+
 
 
 
