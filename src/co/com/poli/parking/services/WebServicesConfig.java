@@ -19,5 +19,6 @@ public class WebServicesConfig  extends Application{
 		resources.add(co.com.poli.parking.services.TarjetaServices.class);
 		resources.add(co.com.poli.parking.services.VehiculoServices.class);
 		resources.add(co.com.poli.parking.services.RegistroServices.class);
+		resources.add(co.com.poli.parking.services.AccesoVehiculo.class);
 	}
 }

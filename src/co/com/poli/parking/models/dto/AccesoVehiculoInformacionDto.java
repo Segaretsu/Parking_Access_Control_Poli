@@ -1,5 +1,7 @@
 package co.com.poli.parking.models.dto;
 
+import java.sql.Timestamp;
+
 import co.com.poli.parking.models.entity.VehiculoEntity;
 import co.com.poli.parking.models.entity.VehiculoEntity.Builder;
 
@@ -14,6 +16,9 @@ public class AccesoVehiculoInformacionDto {
 	private String nombreColor;
 	private String placa;
 	private String modelo;
+	private String nombreTipoUsuario;
+	private Timestamp horaEntrada;
+	private Timestamp horaSalida;
 	
 	public AccesoVehiculoInformacionDto() {
 		
@@ -74,6 +79,30 @@ public class AccesoVehiculoInformacionDto {
 		this.modelo = modelo;
 	}
 	
+	public String getNombreTipoUsuario() {
+		return nombreTipoUsuario;
+	}
+
+	public void setNombreTipoUsuario(String nombreTipoUsuario) {
+		this.nombreTipoUsuario = nombreTipoUsuario;
+	}
+
+	public Timestamp getHoraEntrada() {
+		return horaEntrada;
+	}
+
+	public void setHoraEntrada(Timestamp horaEntrada) {
+		this.horaEntrada = horaEntrada;
+	}
+
+	public Timestamp getHoraSalida() {
+		return horaSalida;
+	}
+
+	public void setHoraSalida(Timestamp horaSalida) {
+		this.horaSalida = horaSalida;
+	}
+
 	public AccesoVehiculoInformacionDto (Builder builder) {
 		this.idVehiculo = builder.idVehiculo;
 		this.idUsuario = builder.idUsuario;
@@ -84,6 +113,9 @@ public class AccesoVehiculoInformacionDto {
 		this.nombreColor = builder.nombreColor;
 		this.placa = builder.placa;
 		this.modelo = builder.modelo;
+		this.nombreTipoUsuario = builder.nombreTipoUsuario;
+		this.horaEntrada = builder.horaEntrada;
+		this.horaSalida = builder.horaSalida;
 	}
 	
 	public static class Builder { 
@@ -96,7 +128,10 @@ public class AccesoVehiculoInformacionDto {
 		private String nombreColor;
 		private String placa;
 		private String modelo;
-
+		private String nombreTipoUsuario;
+        private Timestamp horaEntrada;
+        private Timestamp horaSalida;
+        
 		
 		public static Builder newInstance () {
 			return new Builder();
@@ -146,6 +181,19 @@ public class AccesoVehiculoInformacionDto {
 		
 		public Builder withModelo(String modelo) {
 			this.modelo = modelo;
+			return this;
+		}
+		
+		public Builder withnombreTipoUsuario(String nombreTipoUsuario) {
+			this.nombreTipoUsuario = nombreTipoUsuario;
+			return this;
+		}
+		public Builder withHoraEntrada(Timestamp horaEntrada) {
+			this.horaEntrada = horaEntrada;
+			return this;
+		}
+		public Builder withHoraSalida(Timestamp horaSalida) {
+			this.horaSalida = horaSalida;
 			return this;
 		}
 

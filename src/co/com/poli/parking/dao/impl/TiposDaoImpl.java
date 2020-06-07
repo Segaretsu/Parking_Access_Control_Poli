@@ -15,6 +15,7 @@ import co.com.poli.parking.models.entity.TipoEstadoEntity;
 import co.com.poli.parking.models.entity.TipoMarcaEntity;
 import co.com.poli.parking.models.entity.TipoPerfilEntity;
 import co.com.poli.parking.models.entity.TipoVehiculoEntity;
+import co.com.poli.parking.models.entity.UsuarioEntity;
 
 public class TiposDaoImpl implements TiposDao{
 
@@ -167,6 +168,77 @@ public class TiposDaoImpl implements TiposDao{
 			return null;
 		}
 		return listaTipoVehiculos;
+	}
+
+	@Override
+	public TipoColorEntity getColorById(int idColor) {
+		ConnectionDataBase conexion = new ConnectionDataBase();
+		String query = "SELECT idColor, descripcion FROM tipo_colores WHERE idColor = '" + idColor + "'";
+		TipoColorEntity tipoVehiculo = null;
+		try (Connection con = conexion.getCon();
+				Statement st = con.createStatement();
+				ResultSet rs = st.executeQuery(query)) {
+			if (rs.next()) {
+				tipoVehiculo = TipoColorEntity.Builder.newInstance()
+						.withIdColor(idColor)
+						.withDescripcion(rs.getString("descripcion"))
+						.build();
+			}	
+		} catch (SQLException sqlex) {
+			System.out.println("Error: " + sqlex.getMessage());
+		} catch (Exception ex) {
+			System.out.println("Clase: " + this.getClass().getName() + "\nError: " + ex.getMessage());
+		}
+		
+		return tipoVehiculo;
+		
+	}
+
+	@Override
+	public TipoVehiculoEntity getTipoVehiculoById(int idTipoVehiculo) {
+		ConnectionDataBase conexion = new ConnectionDataBase();
+		String query = "SELECT idTipoVehiculo, descripcion, nombreicono FROM tipo_vehiculos WHERE idTipoVehiculo = '" + idTipoVehiculo + "'";
+		TipoVehiculoEntity tipoVehiculo= null;
+		try (Connection con = conexion.getCon();
+				Statement st = con.createStatement();
+				ResultSet rs = st.executeQuery(query)) {
+			if (rs.next()) {
+				tipoVehiculo = TipoVehiculoEntity.Builder.newInstance()
+						.withIdTipoVehiculo(idTipoVehiculo)
+						.withDescripcion(rs.getString("descripcion"))
+						.withNombreIcono(rs.getString("nombreicono"))
+						.build();
+			}	
+		} catch (SQLException sqlex) {
+			System.out.println("Error: " + sqlex.getMessage());
+		} catch (Exception ex) {
+			System.out.println("Clase: " + this.getClass().getName() + "\nError: " + ex.getMessage());
+		}
+		
+		return tipoVehiculo;
+	}
+
+	@Override
+	public TipoPerfilEntity getTipoPerfilById(int idTipoPerfil) {
+		ConnectionDataBase conexion = new ConnectionDataBase();
+		String query = "SELECT idTipoPerfil, descripcion FROM tipo_perfiles WHERE idTipoPerfil = '" + idTipoPerfil + "'";
+		TipoPerfilEntity tipoPerfil= null;
+		try (Connection con = conexion.getCon();
+				Statement st = con.createStatement();
+				ResultSet rs = st.executeQuery(query)) {
+			if (rs.next()) {
+				tipoPerfil = TipoPerfilEntity.Builder.newInstance()
+						.withIdTipoPerfil(idTipoPerfil)
+						.withDescripcion((rs.getString("descripcion")))
+						.build();
+			}	
+		} catch (SQLException sqlex) {
+			System.out.println("Error: " + sqlex.getMessage());
+		} catch (Exception ex) {
+			System.out.println("Clase: " + this.getClass().getName() + "\nError: " + ex.getMessage());
+		}
+		
+		return tipoPerfil;
 	}
 
 }
