@@ -22,16 +22,16 @@ public class RegistroServices {
 	 */
 	@GET
 	@Path("crear")
-	//@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public int crearRegistro(/*RegistroEntity registro*/) {
-		RegistroEntity registro = RegistroEntity.Builder.newInstance()
-				.withIdVehiculo(5)
-				.withIdTarjeta(1)
-				.withFechaEntrada(new Date())
-				.withFechaSalida(null)
-				.withIdEstado(1)
-				.build();
+	public int crearRegistro(RegistroEntity registro) {
+//		RegistroEntity registro = RegistroEntity.Builder.newInstance()
+//				.withIdVehiculo(5)
+//				.withIdTarjeta(1)
+//				.withFechaEntrada(new Date())
+//				.withFechaSalida(null)
+//				.withIdEstado(1)
+//				.build();
 		
 		
 		RegistroDaoImplm registroDaoImpl = new RegistroDaoImplm();
