@@ -18,8 +18,10 @@
 <!-- CSS -->
 <link rel="stylesheet" href="./css/menu-propio.css">
 <link rel="stylesheet" href="./css/generales.css">
-<link rel="stylesheet" href="./plugins/registro-plugin/registro/registro-plugin.css">
-<link rel="stylesheet" href="./plugins/acceso-vehiculo-plugin/informacion/accesso-vehiculo-informacion.css"">
+<link rel="stylesheet"
+	href="./plugins/registro-plugin/registro/registro-plugin.css">
+<link rel="stylesheet"
+	href="./plugins/acceso-vehiculo-plugin/informacion/accesso-vehiculo-informacion.css"">
 <link rel="stylesheet" href="./plugins/inicio-plugin/inicio-plugin.css">
 <!-- Iconos -->
 <link href="./icons/material-icons.css" rel="stylesheet">
@@ -28,7 +30,9 @@
 <!-- Estilos modal -->
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
-.city {display:none}
+.city {
+	display: none
+}
 </style>
 
 
@@ -39,88 +43,109 @@
 	<header ng-controller="appMenu" class="contenedor-menu">
 		<div class="header-content">
 			<div class="logo">
-				<h4 id = "logo-text">
+				<h4 id="logo-text">
 					Parking<b>Access</b>
 				</h4>
 			</div>
 		</div>
 
 		<div id="icon-menu">
-			<button type="button" class="btn btn-outline-light" onclick="document.getElementById('id01').style.display='block'">Acceso Vehículo</button>
+			<button type="button" class="btn btn-outline-light"
+				onclick="document.getElementById('id01').style.display='block'">Acceso
+				Vehículo</button>
 		</div>
 	</header>
 	<!-- FIN menú -->
-	
+
 	<div class="container-fluid container-all" id="move-content">
-<!-- 		<div id="contenedorAlertas" class="" role="alert"> -->
-<!-- 			<span id="mensajeAlerta">Holy guacamole! You should check in -->
-<!-- 				on some of those fields below.</span> -->
-<!-- 			<button type="button" class="close" data-dismiss="alert" -->
-<!-- 				aria-label="Close"> -->
-<!-- 				<span aria-hidden="true">&times;</span> -->
-<!-- 			</button> -->
-<!-- 		</div> -->
+		<!-- 		<div id="contenedorAlertas" class="" role="alert"> -->
+		<!-- 			<span id="mensajeAlerta">Holy guacamole! You should check in -->
+		<!-- 				on some of those fields below.</span> -->
+		<!-- 			<button type="button" class="close" data-dismiss="alert" -->
+		<!-- 				aria-label="Close"> -->
+		<!-- 				<span aria-hidden="true">&times;</span> -->
+		<!-- 			</button> -->
+		<!-- 		</div> -->
 		<div ng-view></div>
 		<div id="id01" class="w3-modal">
 			<div class="w3-modal-content w3-card-4 w3-animate-zoom">
-  				<header class="w3-container w3-blue"> 
+				<header class="w3-container w3-blue">
 					<!-- <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span> -->
 					<h2>Acceso Vehiculos</h2>
 				</header>
 				<div class="w3-bar w3-border-bottom">
-				   <button class="tablink w3-bar-item w3-button" onclick="openCity(event, 'ultimos')">Ultimos Vehiculos</button>
-				   <button class="tablink w3-bar-item w3-button" onclick="openCity(event, 'ingreso')">Ingreso Invitados</button>
-				   <button class="tablink w3-bar-item w3-button" onclick="openCity(event, 'salida')">Salida Invitados</button>
+					<button class="tablink w3-bar-item w3-button"
+						onclick="openCity(event, 'ultimos')">
+						<span class="material-icons"> keyboard_arrow_left </span>
+					</button>
+					<button class="tablink w3-bar-item w3-button"
+						onclick="openCity(event, 'ingreso')"></button>
+					<button class="tablink w3-bar-item w3-button"
+						onclick="openCity(event, 'salida')"></button>
 				</div>
-	
-				<div id="ultimos" class="w3-container city">
-					<div class="d-flex justify-content-center p-3 border">
-						<button type="submit" class="btn btn-primary">Validar log</button>
+
+				<div id="ultimos" class="w3-container city row">
+					<div class="d-flex justify-content-center p-3">
+						<button type="button" class="btn btn-primary"
+							onclick="openCity(event, 'ultimos')">Ultimos Registros</button>
+					</div>
+					<div class="d-flex justify-content-center p-3">
+						<button type="button" class="btn btn-outline-primary"
+							onclick="openCity(event, 'ingreso')">Ingreso Invitados</button>
+					</div>
+					<div class="d-flex justify-content-center p-3">
+						<button type="button" class="btn btn-outline-primary"
+							onclick="openCity(event, 'salida')">Salida Invitados</button>
 					</div>
 				</div>
-	
+
 				<div id="ingreso" class="w3-container city row">
 					<form class="p-3 border">
-					<div class="d-flex justify-content-center">
-						<div class="form-group">
-					    	<label>Tipo Vehiculo*</label>
-					    	<input type="text" class="form-control" placeholder="Vehiculo">
+						<div class="d-flex justify-content-center">
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label>Tipo Vehiculo*</label> <input type="text"
+										class="form-control" placeholder="Vehiculo">
+								</div>
+								<div class="form-group col-md-12">
+									<label>Placa*</label> <input type="text" class="form-control"
+										placeholder="Numero placa">
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
-						    <label>Placa*</label>
-						    <input type="text" class="form-control" placeholder="Numero placa">
+						<div class="d-flex justify-content-center">
+							<button type="submit" class="btn btn-primary">Registrar
+								ingreso</button>
 						</div>
-					</div>
-					<div class="d-flex justify-content-center">
-						<button type="submit" class="btn btn-primary">Registrar ingreso</button>
-					</div>
 					</form>
 				</div>
-	
+
 				<div id="salida" class="w3-container city">
-				   <form class="p-3 border">
-					<div class="d-flex justify-content-center">
-						<div class="form-group">
-						    <label>Placa*</label>
-						    <input type="text" class="form-control" placeholder="Numero placa">
+					<form class="p-3 border">
+						<div class="d-flex justify-content-center">
+							<div class="form-group">
+								<label>Placa*</label> <input type="text" class="form-control"
+									placeholder="Numero placa">
+							</div>
 						</div>
-					</div>
-					<div class="d-flex justify-content-center">
-						<button type="submit" class="btn btn-primary">Registrar salida</button>
-					</div>
+						<div class="d-flex justify-content-center">
+							<button type="submit" class="btn btn-primary">Registrar
+								salida</button>
+						</div>
 					</form>
 				</div>
-	
+
 				<div class="w3-container w3-light-grey w3-padding">
-					<button class="w3-button w3-right w3-white w3-border" onclick="document.getElementById('id01').style.display='none'">Close</button>
+					<button class="w3-button w3-right w3-white w3-border"
+						onclick="document.getElementById('id01').style.display='none'">Cerrar</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Modal JS -->
 	<script src="js/modal.js"></script>
-	
+
 	<!-- JQuery -->
 	<script src="./js/jquery-3.4.1.slim.min.js" type="text/javascript"></script>
 	<!-- Popper -->
@@ -132,8 +157,10 @@
 
 	<!-- ANGULAR JS -->
 	<script type="text/javascript" src="./app.js"></script>
-	<script type="text/javascript" src="./plugins/registro-plugin/registro/registro-controller-plugin.js"></script>
-	<script type="text/javascript" src="./plugins/acceso-vehiculo-plugin/informacion/acceso-vehiculo-informacion.js"></script>
+	<script type="text/javascript"
+		src="./plugins/registro-plugin/registro/registro-controller-plugin.js"></script>
+	<script type="text/javascript"
+		src="./plugins/acceso-vehiculo-plugin/informacion/acceso-vehiculo-informacion.js"></script>
 
 	<!-- Menú -->
 	<script src="./js/menu.js" type="text/javascript">
