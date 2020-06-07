@@ -22,4 +22,10 @@ public interface TiposDao {
 	public List<TipoMarcaEntity> getListaMarcas();
 	
 	public List<TipoVehiculoEntity> getListaTipoVehiculos();
+	
+	public TipoColorEntity getColorById(int idColor);
+	
+	public TipoVehiculoEntity getTipoVehiculoById(int idTipoVehiculo);
+	
+	public TipoPerfilEntity getTipoPerfilById(int idTipoPerfil);
 }
