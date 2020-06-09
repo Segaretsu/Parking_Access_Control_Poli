@@ -26,17 +26,29 @@ public class ConnectionDataBase {
     }
 
     public static void setConexionDB() {
-        String host = "localhost";
+//    	define('servidor', '35.225.157.42');
+//        define('nombre_bd', 'data');
+//        define('usuario', 'development');
+//        define('password', 'andres');	
+        String host = "35.225.157.42";
         String puerto = "3306"; // o deacuerdo a la instancia
-        String nombreBD = "parkin_acces";
-        String user = "root";
-        String clave = "";
+        String nombreBD = "parking_access";
+        String user = "development";
+        String clave = "andres";
+        boolean GCP = true;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            setCon((Connection)DriverManager.getConnection("jdbc:mysql://" + host + ":"
-                    + puerto + "/" + nombreBD, user, clave));
+            String conect = "";
+            if(GCP) {
+            	conect = "jdbc:mysql:///" + nombreBD + "?cloudSqlInstance=" + host + "&socketFactory=com.google.cloud.sql.mysql.SocketFactory&user=" + user + "&password=" + clave;
+            	setCon((Connection)DriverManager.getConnection(conect));
+            } else {
+            	setCon((Connection)DriverManager.getConnection("jdbc:mysql://" + host + ":"
+                        + puerto + "/" + nombreBD, user, clave));
+            }
+            System.out.println(conect);
         } catch (ClassNotFoundException | SQLException ex) {
-            
+            System.out.println("BREYNER SE TIRO EL PROYECTO");
         }
     }
 

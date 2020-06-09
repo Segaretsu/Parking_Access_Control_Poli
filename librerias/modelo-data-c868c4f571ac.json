@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "modelo-data",
+  "private_key_id": "c868c4f571ac3e495a2f6ba8daf01bda34940db1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCr1MMFHzVO+Li5\nFl5jJ/6+UsuAtYy5kzlNBi/r5Idg71Ll4BT1Q/KAethFSQmxe4DojKovjgeURvMV\nKfWTwK6R8MxqwRYEEu+U8M2yvLPyiJT1TUZSTPwWNjasyA0Mv0yCzEMy2I0gAFgM\n7iVDn9M50L1favm5ILBdMB+BAZAr1lRobqgz/h62sg2+ZXJ0OsTzI3puvSU4b9My\nW1AV7wziltX1cRB9qtc/JaEAQSynAphd5uhSqEm82Z3XKLkfSbUuTYWIfDqiyGn5\nMVg38Hi5Wz1eHFvpKL5sAEXNNTNCqQXHgHkplRRG15oQE+wGr8KPHpbX1BJ4JhMm\n1ZL9kIo/AgMBAAECggEACkQ8xlSrHwW0WV0Xrm2VOZjnzzZjUWX7yyxx9r9H3KGG\nZShPO3V5itylvF07TSJRPVPEo74k//wacDeUFGWZ6JIn6ViR1xRGKH9+XGemI5Ku\nivBSVP63I+3N5+MbohkLjYsXy46g8mCi4ih+chZqcyHG/TYxwOWazZtfXoCR6FSD\nww2qXbA86IRuFZhmHaZIvuCjhn7Dmg46bFXX5exgdB6sDoqmvqZof+HSynItFwkQ\nstXcu1LR0JnXTHmAUi/Pjq9POLoT8jskPNbF/i9pvyg9w3lGzA53SRfWiSzyvDZn\nDEaoqTJ/W0ZsXjo0T6nYZlOsPuM+Lmjl6grA4du9IQKBgQDyyWLYpeUz91fL14W+\nDgUFGHewnvZEvVB1IywM0D3jC1BcvSprve3YTa0DDVr6IKcDYATt6mJ/VEdjDkN9\nhgc3OzgZgX5mxRYFPCVmDqHnybvQe6oEZMGbtKOuugnGHHRumLQODu3joD1BBbnL\nwbZtwTFlpwHy5+JhjNWWP4o24QKBgQC1Lspkdm/Um19lYXix06VbM3LZv59okfat\neeWCAs/pgmTAY6WmyearxtfjKOj14tnHU3pbPvNSD0LtJBj3cWxFpymd5SiUdkUY\nzao8lxbG9AD8wQk0AHWxSCcGMK6m7RvGlUjMG6tOKgUtzYG3YshVPodQz1zgcBLf\n4u5YxHGFHwKBgCW6NaoE3YEdxn7eluHZu93212KS0SINaRtKw+WZ1oQZlftTSexE\nL1mVeHUo9iI4QLu9iAaQjY3LwuwZo1M2KJjkkusjvEisB6f4mLcrPu2N46maDelw\n3sUbZPQZ5LrsYQtun0wv9beRhvM7uIt5JqgXhV2OfjcI4ZzXDbmzVf8BAoGAed5Z\nQK3xlr5TsmuXtXU4+llm3VRpMvtLQ3CEkai2lMiiYE4mdEPGJrD/McqouAu4lLxv\nxsRXAlFFoSDwsi/Wths0gQJNA19yJrbf1RWDupsRtvFY8WOFxpNTvHQuZhWC41Yy\nuye5WEAnb6GVqPaG7d+7QP3Z6RU5fOK1k3u/J90CgYBoMhSXsKnt55IBQf2H/gGo\nRpYTZ1wLvdHiPKdrSeV8hLr6BH78ereEHjXB4aVq6ZHzFQiXJ46AC+2wT8qAE9Yh\n58DoHb+BSOPpBxWwvFH6Xgi5vyJJojMHiK/vA6jwqYc96Shxfme90XDRrIcFmazo\nHCLr5SSAc6bqKbKmUgnm4A==\n-----END PRIVATE KEY-----\n",
+  "client_email": "parking-access@modelo-data.iam.gserviceaccount.com",
+  "client_id": "103199032671727307746",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/parking-access%40modelo-data.iam.gserviceaccount.com"
+}

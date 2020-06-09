@@ -35,9 +35,11 @@ public class TiposDaoImpl implements TiposDao{
 				listaTipoDocumentos.add(tipoDocumento);
 			}
 		} catch (SQLException sqlex) {
+			sqlex.printStackTrace();
 			System.out.println("Clase: " + this.getClass().getName() + "\nError SQL: " + sqlex.getMessage());
 			return null;
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			System.out.println("Clase: " + this.getClass().getName() + "\nError: " + ex.getMessage());
 			return null;
 		}
@@ -60,9 +62,11 @@ public class TiposDaoImpl implements TiposDao{
 				listaTipoPerfiles.add(tipoPerfil);
 			}
 		} catch (SQLException sqlex) {
+			sqlex.printStackTrace();
 			System.out.println("Clase: " + this.getClass().getName() + "\nError SQL: " + sqlex.getMessage());
 			return null;
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			System.out.println("Clase: " + this.getClass().getName() + "\nError: " + ex.getMessage());
 			return null;
 		}
