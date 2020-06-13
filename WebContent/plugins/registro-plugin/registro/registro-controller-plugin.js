@@ -82,5 +82,17 @@ app.controller("registroController", ['$scope', '$http', function($scope, $http)
 		};
 	}
 	
+	
+	$http.get('http://35.184.245.196/parking/app/usuario/allview.php').then(function(response) {
+		console.log(response)
+		if(response.status == $HTTP.Ok) {
+			console.log(response.data)
+		} else {
+			console.log('No estoy bien :(')
+		}
+	}).catch(function(){
+		alert("Estamos en mantenimiento, vuelva más tarde por favor ;)");
+	});
+	
 	ctx.init();
 }])
