@@ -25,14 +25,14 @@ public class TarjetaServices {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public int crearTarjeta(TarjetaEntity tarjeta) {
-//		TarjetaEntity tarjeta = TarjetaEntity.Builder.newInstance()
-//				.withIdEstado(1)
-//				.withNumeroTarjeta("123456")
-//				.build();
+		TarjetaEntity tarjetaCreada = TarjetaEntity.Builder.newInstance()
+				.withIdEstado(1)
+				.withNumeroTarjeta(tarjeta.getNumeroTarjeta())
+				.build();
 		
 		TarjetaDaoImpl tarjetaDaoImpl = new TarjetaDaoImpl();
-		if(tarjetaDaoImpl.registrarTarjeta(tarjeta)) {
-			return tarjeta.getIdTarjeta();
+		if(tarjetaDaoImpl.registrarTarjeta(tarjetaCreada)) {
+			return tarjetaCreada.getIdTarjeta();
 		} else {
 			return 0;
 		}
