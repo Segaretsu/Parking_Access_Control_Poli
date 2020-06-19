@@ -1,4 +1,4 @@
-<div class="col-md-12" ng-if="!formularios[0]">
+<div class="col-md-12" ng-if="formularios[0]">
 	<div class="form-row formulario-centrado">
 		<div class="col-md-12 row centrar-tarjeta-usuarios">
 			<div class="col-md-12 align-self-center align-items-center"
@@ -78,12 +78,12 @@
 </div>
 
 
-<div class="col-md-12">
+<div class="col-md-12" ng-if="formularios[1]">
 	<div class="form-row formulario-centrado">
 		<div class="col-md-12 row centrar-tarjeta-usuarios">
 			<div class="col-md-12 align-self-center align-items-center"
 				style="text-align: center;">
-				<span class="material-icons" id="iconoUsuario">time_to_leave
+				<span class="material-icons" id="iconoUsuario"> time_to_leave
 				</span>
 			</div>
 			<span class="clearfix"></span>
@@ -93,40 +93,91 @@
 						<label for="idTipoVehiculo">Tipo de veh&iacute;culo:</label> <select
 							id="idTipoVehiculo" class="form-control">
 							<option vale="0">--Seleccione un tipo de usuario--</option>
-							<option ng-repeat="tipoUsuario in listaTipoUsuarios"
-								value="{{tipoUsuario.id}}">{{tipoUsuario.name}}</option>
+							<option ng-repeat="tipoVehiculo in listaTipoVehiculos"
+								value="{{tipoVehiculo.idTipoVehiculo}}">{{tipoVehiculo.descripcion}}</option>
 						</select>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="idMarca">Marca del veh&iacute;culo:</label> <select
 							id="idMarca" class="form-control">
 							<option vale="0">--Seleccione un tipo de usuario--</option>
-							<option ng-repeat="tipoUsuario in listaTipoUsuarios"
-								value="{{tipoUsuario.id}}">{{tipoUsuario.name}}</option>
+							<option ng-repeat="marca in listaMarcas"
+								value="{{marca.idMarca}}">{{marca.descripcion}}</option>
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-md-12 row">
-
+					<div class="form-group col-md-6">
+						<label for="idColor">Color del veh&iacute;culo</label> <select
+							id="idColor" class="form-control">
+							<option vale="0">--Seleccione un tipo de usuario--</option>
+							<option ng-repeat="color in listaColores"
+								value="{{color.idColor}}">{{color.descripcion}}</option>
+						</select>
+					</div>
 						<div class="col-md-6">
-							<label for="numeroDocumento">Placa:</label> <input
-								type="number" class="form-control" id="numeroDocumento">
+							<label for="placa">Placa:</label> <input
+								type="text" class="form-control" id="placa">
 						</div>
 						<div class="col-md-6">
-							<label for="telefonoUsuario">Modelo:</label> <input type="number"
-								class="form-control" id="telefonoUsuario" required="required">
+							<label for="modelo">Modelo:</label> <input type="number"
+								class="form-control" id="modelo" required="required">
 						</div>
-						<div class="col-md-3">
-							<label for="telefonoUsuario">N&uacute;mero de puertas:</label> <input type="number"
-								class="form-control" id="telefonoUsuario" required="required">
+						<div class="col-md-4">
+							<label for="numeroPuertas">N&uacute;mero de puertas:</label> <input type="number"
+								class="form-control" id="numeroPuertas" required="required">
 						</div>
-						<div class="col-md-9">
-							<label for="telefonoUsuario">N&uacute;mero del chasis:</label> <input type="number"
-								class="form-control" id="telefonoUsuario" required="required">
+						<div class="col-md-8">
+							<label for="numeroChasis">N&uacute;mero del chasis:</label> <input type="number"
+								class="form-control" id="numeroChasis" required="required">
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="form-group col-md-12 row">
+					<div class="col-md-12 row contenido-derecha">
+						<div class="col-md-12 contenido-derecha">
+							<button type="button" class="btn btn-success boton-registrar"
+								ng-click="guardarVehiculo()">Siguiente</button>
+							<button type="button"
+								class="btn btn-outline-secondary boton-cancelar"
+								ng-click="volver()">Volver</button>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-md-12" ng-if="formularios[2]">
+	<div class="form-row formulario-centrado">
+		<div class="col-md-12 row centrar-tarjeta-usuarios">
+			<div class="col-md-12 align-self-center align-items-center"
+				style="text-align: center;">
+				<span class="material-icons" id="iconoUsuario">credit_card</span>
+			</div>
+			<span class="clearfix"></span>
+			<div class="col-xl-12 center-block centrar-tarjeta-usuarios">
+				<div class="form-group">
+					<div class="col-md-12 row">
+						<div class="col-md-12">
+							<label for="placa">N&uacute;mero de la tarjeta:</label> <input
+								type="text" class="form-control" id="numeroTarjeta">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group col-md-12 row">
+					<div class="col-md-12 row contenido-derecha">
+						<div class="col-md-12 contenido-derecha">
+							<button type="button" class="btn btn-success boton-registrar"
+								ng-click="registrar()">Registrar</button>
+							<button type="button"
+								class="btn btn-outline-secondary boton-cancelar"
+								ng-click="volver()">Volver</button>
+						</div>
+					</div>
 			</div>
 		</div>
 	</div>
