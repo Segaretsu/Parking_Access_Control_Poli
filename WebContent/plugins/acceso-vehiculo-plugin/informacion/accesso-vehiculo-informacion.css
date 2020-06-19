@@ -26,6 +26,7 @@
 }
 .color-icono-rojo{
 	color:red;
+	cursor: pointer;
 }
 
 .color-icono-tv{
@@ -33,10 +34,13 @@
 }
 
 .centrar-icono-ojo-verde{
-	margin-left: 14.5%;;
+	margin-left: 14.5%;
+	cursor: pointer;
+	
 }
 .centar-icono-ojo-azul{
 	margin-left: 17%;
+	cursor: pointer;
 }
 .border-radius-defecto{
     border-top-left-radius: 0;
@@ -44,3 +48,10 @@
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
+
+.div-btn-aceptar{
+     display: flex;
+    flex-direction: row-reverse;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}	

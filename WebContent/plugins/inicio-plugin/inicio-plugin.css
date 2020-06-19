@@ -4,7 +4,9 @@
     box-sizing: border-box;
 }
 
-
+.centrar-btn-consultar{
+	margin-top: 7.5% !important;
+}
 .contenedor{
     width: 90%;
     max-width:900px;
@@ -18,7 +20,7 @@
 }
 
 .tabla{
-    width: 40%;
+    width: 45%;
     height: 500px;
     margin: auto;
     border:1px solid #dbf4f5;
@@ -83,7 +85,7 @@ a.boton{
 @media screen and (max-width: 700px){
     .tabla{
         width: 45%;
-        padding:30px;
+        padding:5%;
     }
     .tabla > h2{
         margin-top:40px;
@@ -93,6 +95,6 @@ a.boton{
 @media screen and (max-width:550px){
     .tabla{
         width: 85%;
-        padding: 20px;
+        padding:5%;
     }
 }

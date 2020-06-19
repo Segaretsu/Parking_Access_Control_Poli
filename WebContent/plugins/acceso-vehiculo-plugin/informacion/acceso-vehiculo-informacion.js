@@ -25,9 +25,15 @@ app.controller("accesoVehiculoController", ['$scope', '$http', function($scope, 
 				if($vehiculosDentro){
 					ctx.cantidadDentro = $cantidadDatos;
 					ctx.listaVehiculosDentro = response.data;
+					for(let i = 0; i < ctx.listaVehiculosDentro.length; i++){
+						ctx.listaVehiculosDentro[i].numero = i + 1;
+					}
 				}else{
 					ctx.cantidadFuera = $cantidadDatos;
 					ctx.listaVehiculosFuera = response.data;
+					for(let i = 0; i < ctx.listaVehiculosFuera.length; i++){
+						ctx.listaVehiculosFuera[i].numero = i + 1;
+					}
 				}
 			} else {
 				console.log("PAILAS ENTRO A ESE ELSE DESPUES DE UNDEFINED")

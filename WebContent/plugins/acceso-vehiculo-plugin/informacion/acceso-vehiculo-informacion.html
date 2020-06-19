@@ -18,7 +18,7 @@
 		  </thead>
 		  <tbody>
 		    <tr ng-repeat="vehiculosDentro in listaVehiculosDentro">
-		      <th scope="row">1</th>
+		      <th scope="row">{{vehiculosDentro.numero}}</th>
 		      <td><span class="material-icons color-icono-tv">{{vehiculosDentro.iconoTipoVehiculo}}</span></td>
 		      <td>{{vehiculosDentro.placa}}</td>
 		      <td>{{vehiculosDentro.nombreColor}}</td>
@@ -59,7 +59,7 @@
 		  </thead>
 		  <tbody>
 		    <tr ng-repeat="vehiculosFuera in listaVehiculosFuera">
-		      <th scope="row">1</th>
+		      <th scope="row">{{vehiculosFuera.numero}}</th>
 		      <td><span class="material-icons color-icono-tv">{{vehiculosFuera.iconoTipoVehiculo}}</span></td>
 		      <td>{{vehiculosFuera.placa}}</td>
 		      <td>{{vehiculosFuera.nombreColor}}</td>
@@ -76,7 +76,7 @@
 		<button type="button" class="btn btn-outline-primary" ng-click="listarVehiculosDentro(cantidadFuera+5, false)">Ver m&aacute;s</button>
 	</div>
    </div>
-   <div>
+   <div class="div-btn-aceptar">
    	  <button type="button" class="btn btn-info">ACEPTAR</button>
    </div>
 </div>
