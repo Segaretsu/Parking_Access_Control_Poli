@@ -5,23 +5,40 @@ app.controller("registroController", ['$scope', '$http', function($scope, $http)
 	ctx.listaTipoUsuarios;
 	ctx.listaTipoDocumentos;
 	ctx.usuarioRegistro;
-	/* Definicion Metodos */
+	ctx.formularios;
+	ctx.indexFormularioActual;
+	/* Declaracion Metodos */
 	ctx.init = init;
 	ctx.registrarUsuario = registrarUsuario;
 	ctx.getListaTipoUsuarios = getListaTipoUsuarios;
 	ctx.getListaTipoDocumentos = getListaTipoDocumentos;
 	ctx.setUsuarioRegistro = setUsuarioRegistro;
+	ctx.validarFormulario = validarFormulario;
+	ctx.guardarUsuario = guardarUsuario;
 	
 	// toda el codigo del controlador de inicio aqui
     this.$onInit = function () {
     	
     }
 	
-	/* Declaracion Metodos */
+	/* Definicion Metodos */
     
     function init() {
     	ctx.getListaTipoUsuarios();
     	ctx.getListaTipoDocumentos();
+    	ctx.formularios = [false,false,false];
+    	ctx.indexFormularioActual = 0;
+    }
+    
+    function guardarUsuario() {
+    	ctx.setUsuarioRegistro();
+    	if(ctx.validarFormulario(ctx.usuarioRegistro)){
+    		sessionStorage.setItem('usuarioARegistrar', ctx.usuarioRegistro);
+    		ctx.formularios[ctx.indexFormularioActual] = true;
+    		ctx.indexFormularioActual++;
+    	} else {
+    		alert('Valida la información del formulario por favor');
+    	}
     }
 	
 	function registrarUsuario () {
@@ -82,17 +99,30 @@ app.controller("registroController", ['$scope', '$http', function($scope, $http)
 		};
 	}
 	
-	
-	$http.get('http://35.184.245.196/parking/app/usuario/allview.php').then(function(response) {
-		console.log(response)
-		if(response.status == $HTTP.Ok) {
-			console.log(response.data)
-		} else {
-			console.log('No estoy bien :(')
+	function validarFormulario ($usuario) {
+		if(!$usuario.idTipoPerfil){
+			return false;
 		}
-	}).catch(function(){
-		alert("Estamos en mantenimiento, vuelva más tarde por favor ;)");
-	});
+		if(!$usuario.idTipoDocumento) {
+			return false;
+		}
+		if(!$usuario.numeroDocumento){
+			return false;
+		}
+		if(!$usuario.nombre){
+			return false;
+		}
+		if(!$usuario.apellidos){
+			return false;
+		}
+		if(!$usuario.telefono){
+			return false;		
+		}		
+		if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($usuario.correo))){
+			return false;
+		}
+		return true;
+	}
 	
 	ctx.init();
 }])
