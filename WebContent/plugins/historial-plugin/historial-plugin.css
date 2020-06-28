@@ -1,0 +1,13 @@
+#blanco{
+	display: block;
+    margin-bottom: .5rem;
+    color: white; 
+}
+
+.iconoHistorial{
+	font-size: 500%;
+}
+
+.derecha{
+	text-align: right;
+}
