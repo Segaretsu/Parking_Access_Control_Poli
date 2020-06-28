@@ -141,4 +141,10 @@ public class RegistroEntity {
 			return new RegistroEntity(this);
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "RegistroEntity [idRegistro=" + idRegistro + ", idVehiculo=" + idVehiculo + ", idTarjeta=" + idTarjeta
+				+ ", fechaEntrada=" + fechaEntrada + ", fechaSalida=" + fechaSalida + ", idEstado=" + idEstado + "]";
+	}
 }

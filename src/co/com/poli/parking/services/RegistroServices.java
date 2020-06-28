@@ -10,6 +10,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.sun.jmx.snmp.Timestamp;
+
 import co.com.poli.parking.dao.impl.RegistroDaoImplm;
 import co.com.poli.parking.dao.impl.TarjetaDaoImpl;
 import co.com.poli.parking.dao.impl.UsuarioDaoImpl;
@@ -99,12 +101,12 @@ public class RegistroServices {
 		VehiculoEntity vehiculo = vehiculoDaoImpl.getVehiculoByPlaca(placa);
 		RegistroDaoImplm registroDaoImpl = new RegistroDaoImplm();
 		RegistroEntity registro = registroDaoImpl.getUltimoRegistroByIdVehiculo(vehiculo.getIdVehiculo());
-		if(registro.getFechaSalida() != null) {
-			
-		}
-		if(registroDaoImpl.registrarRegistro(registro)) {
-			return registro.getIdRegistro();
-		} else {
+		registro.setIdEstado(2);
+		registro.setFechaSalida(new java.sql.Timestamp(new java.util.Date().getTime()));
+		if(registroDaoImpl.actualizarRegistro(registro)) {
+			return 1;
+		} 
+		else {
 			return 0;
 		}
 	}
