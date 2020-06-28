@@ -28,6 +28,12 @@ app.config(function($routeProvider, $locationProvider){
             controllerAs: "ctx",
             templateUrl: "./plugins/registro-plugin/registro/registro-plugin.html"
         })
+
+		.when("/consulta-historial", {
+            controller: "historialController",
+            controllerAs: "ctx",
+            templateUrl: "./plugins/historial-plugin/historial-plugin.html"
+        })
         
         .otherwise({
             redirectTo: '/'
@@ -105,13 +111,16 @@ app.controller("appCtrl", ['$scope', '$http', function ($scope, $http){
 				ctx.listaTipoVehiculos = response.data;
 			}
 		}).catch(function(){
-			alert("Estamos en mantenimiento, vuelva más tarde por favor ;)");
+			alert("Estamos en mantenimiento, vuelva mï¿½s tarde por favor ;)");
 		});
 	}
 	
 	ctx.init();
 	
 }]);
+
+/**************************************** */
+   
 
 
 
