@@ -6,13 +6,18 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import co.com.poli.parking.dao.impl.RegistroDaoImplm;
+import co.com.poli.parking.dao.impl.TarjetaDaoImpl;
 import co.com.poli.parking.dao.impl.UsuarioDaoImpl;
+import co.com.poli.parking.dao.impl.VehiculoDaoImpl;
 import co.com.poli.parking.models.entity.RegistroEntity;
+import co.com.poli.parking.models.entity.TarjetaEntity;
 import co.com.poli.parking.models.entity.UsuarioEntity;
+import co.com.poli.parking.models.entity.VehiculoEntity;
 
 @Path("registro")
 public class RegistroServices {
@@ -35,6 +40,68 @@ public class RegistroServices {
 		
 		
 		RegistroDaoImplm registroDaoImpl = new RegistroDaoImplm();
+		if(registroDaoImpl.registrarRegistro(registro)) {
+			return registro.getIdRegistro();
+		} else {
+			return 0;
+		}
+	}
+	
+	/**
+	 * URL Ejemplo: http://localhost:8080/Parking_Access_Control_Poli/Parking-back/registro/ingreso/placa/{placa}/idTipoV/{idTipoVehiculo}
+	 */
+	@GET
+	@Path("ingreso/placa/{placa}/idTipoV/{idTipoVehiculo}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public int crearRegistro(@PathParam("placa") String placa, @PathParam("idTipoVehiculo") int idTipoVehiculo) {
+		VehiculoDaoImpl vehiculoDaoImpl = new VehiculoDaoImpl();
+		VehiculoEntity vehiculo = vehiculoDaoImpl.getVehiculoByPlaca(placa);
+		RegistroEntity registro = null;
+		if(vehiculo != null) {
+			registro = RegistroEntity.Builder.newInstance()
+					.withIdVehiculo(vehiculo.getIdVehiculo())
+					.withIdTarjeta(vehiculo.getIdTarjeta())
+					.withFechaEntrada(new Date())
+					.withFechaSalida(null)
+					.withIdEstado(1)
+					.build();
+		} else {
+			VehiculoEntity vehiculoNew = VehiculoEntity.Builder.newInstance()
+					.withIdTipoVehiculo(idTipoVehiculo)
+					.withIdTarjeta(0)
+					.withPlaca(placa)
+					.build();
+			vehiculoDaoImpl.registrarVehiculo(vehiculoNew);
+			registro = RegistroEntity.Builder.newInstance()
+					.withIdVehiculo(vehiculoNew.getIdVehiculo())
+					.withIdTarjeta(vehiculoNew.getIdTarjeta())
+					.withFechaEntrada(new Date())
+					.withFechaSalida(null)
+					.withIdEstado(1)
+					.build();
+		}
+		RegistroDaoImplm registroDaoImpl = new RegistroDaoImplm();
+		if(registroDaoImpl.registrarRegistro(registro)) {
+			return registro.getIdRegistro();
+		} else {
+			return 0;
+		}
+	}
+	
+	/**
+	 * URL Ejemplo: http://localhost:8080/Parking_Access_Control_Poli/Parking-back/registro/salida/placa/{placa}
+	 */
+	@GET
+	@Path("salida/placa/{placa}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public int registrarSalida(@PathParam("placa") String placa) {
+		VehiculoDaoImpl vehiculoDaoImpl = new VehiculoDaoImpl();
+		VehiculoEntity vehiculo = vehiculoDaoImpl.getVehiculoByPlaca(placa);
+		RegistroDaoImplm registroDaoImpl = new RegistroDaoImplm();
+		RegistroEntity registro = registroDaoImpl.getUltimoRegistroByIdVehiculo(vehiculo.getIdVehiculo());
+		if(registro.getFechaSalida() != null) {
+			
+		}
 		if(registroDaoImpl.registrarRegistro(registro)) {
 			return registro.getIdRegistro();
 		} else {

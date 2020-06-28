@@ -10,4 +10,8 @@ public interface RegistroDao {
 	
 	public List<RegistroEntity> getUltimosVehiculos(int cantidadDatos, boolean vehiculoDentro);
 	
+	public boolean actualizarRegistro (RegistroEntity registroNuevo);
+	
+	public RegistroEntity getUltimoRegistroByIdVehiculo (int idVehiculo);
+	
 }

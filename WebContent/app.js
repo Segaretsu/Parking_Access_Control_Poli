@@ -34,13 +34,7 @@ app.config(function($routeProvider, $locationProvider){
         });
 });
 
-
-app.controller("appCtrl", ['$scope', '$http', function ($scope, $http){
-	/** Definicion de variables*/
-	ctx = $scope;
-}]);
-
-app.controller("appMenu", ['$scope', function ($scope){
+app.controller("appMenu", ['$scope', '$http', function ($scope, $http){
 	/** Definicion de variables */
 	ctx = $scope;
 	ctx.pantallaActual = 'Inicio';
@@ -73,7 +67,51 @@ app.controller("appMenu", ['$scope', function ($scope){
 	
 }]);
 
-
+app.controller("appCtrl", ['$scope', '$http', function ($scope, $http){
+	/** Definicion de variables*/
+	ctx = $scope;
+	ctx.listaTipoVehiculos;
+	/** Definicion de metodos */
+	ctx.ingresarInvitado = ingresarInvitado;
+	ctx.getListaTipoVehiculos = getListaTipoVehiculos;
+	
+	/*INICIO*/
+	ctx.init = function () {
+		ctx.getListaTipoVehiculos();
+	}
+	
+	/** Creacion de Metodos */
+	function ingresarInvitado () {
+    	let placa = $('#placaInvitado').val();
+    	let idTipoVehiculo = $('#idTipoVehiculoInvitado').val();
+    	//         /Parking_Access_Control_Poli/Parking-back/tipo/vehiculos
+    	$http.get('/Parking_Access_Control_Poli/Parking-back/registro/ingreso/placa/' + placa + '/idTipoV/' + idTipoVehiculo).then(function(response) {
+			console.log(response);
+			if (response.data == "0") {
+				alert('No se registro el invitado');
+			} else {
+				alert('Registro exitoso');
+			}
+		}).catch(function(){
+			alert("Se nos cayo el sv");
+		});
+    }
+	
+	function getListaTipoVehiculos() {
+		ctx.listaTipoVehiculos = [ { "idTipoVehiculo":"1", "descripcion":"Carro" } ];
+		$http.get('/Parking_Access_Control_Poli/Parking-back/tipo/vehiculos').then(function(response) {
+			console.log(response)
+			if(response.status == $HTTP.Ok) {
+				ctx.listaTipoVehiculos = response.data;
+			}
+		}).catch(function(){
+			alert("Estamos en mantenimiento, vuelva más tarde por favor ;)");
+		});
+	}
+	
+	ctx.init();
+	
+}]);
 
 
 
