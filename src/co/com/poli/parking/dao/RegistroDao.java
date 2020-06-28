@@ -14,4 +14,6 @@ public interface RegistroDao {
 	
 	public RegistroEntity getUltimoRegistroByIdVehiculo (int idVehiculo);
 	
+	public List<RegistroEntity> getListaFechasRegistros (int idVehiculo, int cantidad);
+	
 }

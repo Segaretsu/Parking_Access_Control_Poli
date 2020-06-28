@@ -136,4 +136,34 @@ public class RegistroDaoImplm implements RegistroDao {
 		return registro;
 	}
 
+	@Override
+	public List<RegistroEntity> getListaFechasRegistros(int idVehiculo, int cantidad) {
+		ConnectionDataBase conexion = new ConnectionDataBase();
+		String query = null;
+		query = "SELECT idRegistro, idVehiculo, idTarjeta, fechaEntrada, fechaSalida, idEstado FROM registros WHERE idVehiculo = '"
+				+ idVehiculo + "' ORDER BY idRegistro DESC LIMIT " + cantidad;
+		List<RegistroEntity> registros = new LinkedList<RegistroEntity>();
+		try (Connection con = conexion.getCon();
+				Statement st = con.createStatement();
+				ResultSet rs = st.executeQuery(query)) {
+			while (rs.next()) {
+				RegistroEntity registro = RegistroEntity.Builder.newInstance()
+						.withIdRegistro(rs.getInt("idRegistro"))
+						.withIdVehiculo(rs.getInt("idVehiculo"))
+						.withIdTarjeta(rs.getInt("idTarjeta"))
+						.withFechaEntrada(rs.getTimestamp("fechaEntrada"))
+						.withFechaSalida(rs.getTimestamp("fechaSalida"))
+						.withIdEstado(rs.getInt("idEstado")).build();
+				registros.add(registro);
+			}
+		} catch (SQLException sqlex) {
+			System.out.println("Clase: " + this.getClass().getName() + "\nError SQL: " + sqlex.getMessage());
+			return null;
+		} catch (Exception ex) {
+			System.out.println("Clase: " + this.getClass().getName() + "\nError: " + ex.getMessage());
+			return null;
+		}
+		return registros;
+	}
+
 }
