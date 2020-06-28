@@ -80,6 +80,7 @@ app.controller("appCtrl", ['$scope', '$http', function ($scope, $http){
 	/** Definicion de metodos */
 	ctx.ingresarInvitado = ingresarInvitado;
 	ctx.getListaTipoVehiculos = getListaTipoVehiculos;
+	ctx.salidaInvitado = salidaInvitado;
 	
 	/*INICIO*/
 	ctx.init = function () {
@@ -92,6 +93,20 @@ app.controller("appCtrl", ['$scope', '$http', function ($scope, $http){
     	let idTipoVehiculo = $('#idTipoVehiculoInvitado').val();
     	//         /Parking_Access_Control_Poli/Parking-back/tipo/vehiculos
     	$http.get('/Parking_Access_Control_Poli/Parking-back/registro/ingreso/placa/' + placa + '/idTipoV/' + idTipoVehiculo).then(function(response) {
+			console.log(response);
+			if (response.data == "0") {
+				alert('No se registro el invitado');
+			} else {
+				alert('Registro exitoso');
+			}
+		}).catch(function(){
+			alert("Se nos cayo el sv");
+		});
+    }
+	
+	function salidaInvitado () {
+    	let placa = $('#placaInvitadoSalida').val();
+    	$http.get('/Parking_Access_Control_Poli/Parking-back/registro/salida/placa/' + placa).then(function(response) {
 			console.log(response);
 			if (response.data == "0") {
 				alert('No se registro el invitado');

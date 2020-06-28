@@ -35,12 +35,10 @@ app.controller("accesoVehiculoController", ['$scope', '$http', function($scope, 
 						ctx.listaVehiculosFuera[i].numero = i + 1;
 					}
 				}
-			} else {
-				console.log("PAILAS ENTRO A ESE ELSE DESPUES DE UNDEFINED")
 			}
 		}).catch(function(){
 			//debugger;
-			alert("Se nos cayo el sv");
+			console.log("Se nos cayo el sv");
 		});
 	}
 	

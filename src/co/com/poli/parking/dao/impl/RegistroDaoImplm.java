@@ -83,14 +83,15 @@ public class RegistroDaoImplm implements RegistroDao {
 	@Override
 	public boolean actualizarRegistro(RegistroEntity registroNuevo) {
 		ConnectionDataBase conexion = new ConnectionDataBase();
-		String query = "UPDATE registros SET idTarjeta=?, fechaEntrada=?, fechaSalida=?, idEstado=? WHERE idVehiculo = ?";
+		String query = "UPDATE registros SET fechaEntrada=?, fechaSalida=?, idEstado=? WHERE idVehiculo = ?"
+				+ " ORDER BY fechaEntrada DESC LIMIT 1";
 		try (Connection con = conexion.getCon();
 				PreparedStatement pst = (PreparedStatement) con.prepareStatement(query,
 						Statement.RETURN_GENERATED_KEYS)) {
-			pst.setTimestamp(2, (Timestamp) registroNuevo.getFechaEntrada());
-			pst.setTimestamp(3, (Timestamp) registroNuevo.getFechaSalida());
-			pst.setInt(4, registroNuevo.getIdEstado());
-			pst.setInt(5, registroNuevo.getIdVehiculo());
+			pst.setTimestamp(1, (Timestamp) registroNuevo.getFechaEntrada());
+			pst.setTimestamp(2, (Timestamp) registroNuevo.getFechaSalida());
+			pst.setInt(3, registroNuevo.getIdEstado());
+			pst.setInt(4, registroNuevo.getIdVehiculo());
 			pst.execute();
 
 			if (pst.getUpdateCount() >= 1) {
@@ -116,13 +117,15 @@ public class RegistroDaoImplm implements RegistroDao {
 		try (Connection con = conexion.getCon();
 				Statement st = con.createStatement();
 				ResultSet rs = st.executeQuery(query)) {
-			registro = RegistroEntity.Builder.newInstance()
-					.withIdRegistro(rs.getInt("idRegistro"))
-					.withIdVehiculo(rs.getInt("idVehiculo"))
-					.withIdTarjeta(rs.getInt("idTarjeta"))
-					.withFechaEntrada(rs.getTimestamp("fechaEntrada"))
-					.withFechaSalida(rs.getTimestamp("fechaSalida"))
-					.withIdEstado(rs.getInt("idEstado")).build();
+			if (rs.next()) {
+				registro = RegistroEntity.Builder.newInstance()
+						.withIdRegistro(rs.getInt("idRegistro"))
+						.withIdVehiculo(rs.getInt("idVehiculo"))
+						.withIdTarjeta(rs.getInt("idTarjeta"))
+						.withFechaEntrada(rs.getTimestamp("fechaEntrada"))
+						.withFechaSalida(rs.getTimestamp("fechaSalida"))
+						.withIdEstado(rs.getInt("idEstado")).build();
+			}
 		} catch (SQLException sqlex) {
 			System.out.println("Clase: " + this.getClass().getName() + "\nError SQL: " + sqlex.getMessage());
 			return null;
