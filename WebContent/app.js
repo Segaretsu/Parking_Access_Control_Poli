@@ -98,6 +98,7 @@ app.controller("appCtrl", ['$scope', '$http', function ($scope, $http){
 				alert('No se registro el invitado');
 			} else {
 				alert('Registro exitoso');
+				window.location.href=$CONFIG.url;
 			}
 		}).catch(function(){
 			alert("Se nos cayo el sv");
@@ -112,6 +113,7 @@ app.controller("appCtrl", ['$scope', '$http', function ($scope, $http){
 				alert('No se registro el invitado');
 			} else {
 				alert('Registro exitoso');
+				window.location.href=$CONFIG.url;
 			}
 		}).catch(function(){
 			alert("Se nos cayo el sv");

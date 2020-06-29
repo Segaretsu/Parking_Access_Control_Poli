@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row div-row-vehiculos-ingresados">
-		<label class="mensaje-vehiculos-ingresados">HISTORICO</label>
+		<label class="mensaje-historial"><strong>HISTORICO</strong></label>
 		<div class=""></div>
 		<div class="form-group col-md-12 row">
 		    <div class="form-group col-md-3">
@@ -25,11 +25,11 @@
 		</div>
 		<div class="form-group col-md-12 row" ng-if="busquedaSeEjecuto">
 			<div class="form-group col-md-6">
-			   <div class="form-group col-md-12 row">
+			   <div class="form-group col-md-12 row centrar">
 				 <div class="form-group col-md-12">
-				   <span class="material-icons color-icono-tv iconoHistorial derecha">{{informacionVehiculo.tipoVehiculo.nombreicono}}</span>
+				   <span class="material-icons color-icono-tv iconoHistorial derecha centrarIcono">{{informacionVehiculo.tipoVehiculo.nombreicono}}</span>
 				 </div>
-				 <div class="form-group col-md-6">
+				 <div class="form-group col-md-6 centrarTexto">
 				      <label for="fechaSalida"><strong>Tipo vehiculo:</strong> {{informacionVehiculo.tipoVehiculo.descripcion}}</label>
 				      <label for="fechaSalida"><strong>Propietario:</strong> {{informacionUsuario.nombre}} {{informacionUsuario.apellidos}}</label>   
 				 </div>
