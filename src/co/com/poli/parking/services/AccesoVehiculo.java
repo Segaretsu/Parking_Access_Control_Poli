@@ -29,7 +29,6 @@ public class AccesoVehiculo {
 		List<AccesoVehiculoInformacionDto> listaAccesoV = new LinkedList<AccesoVehiculoInformacionDto>();
          VehiculoDaoImpl accesoV = new VehiculoDaoImpl();
 		listaAccesoV = accesoV.getListaVehiculosDentro(cantidadDatos, vehiculosDentro);
-		System.out.println("SE EJECUTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO:::");
         return listaAccesoV;
 	}
 	

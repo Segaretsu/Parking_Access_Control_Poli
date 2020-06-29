@@ -151,12 +151,10 @@ public class VehiculoDaoImpl implements VehiculoDao{
 			listaTipoColor.add(tipoColorEntity);
 			listaTipoVehiculo.add(tipoVehiculoEntity);
 		}
-		
 		for (UsuarioEntity usuario: listaUsuario) {
 			TipoPerfilEntity tipoPerfilEntity = tipoDaoImpl.getTipoPerfilById(usuario.getIdTipoPerfil());
 			listaTipoPerfil.add(tipoPerfilEntity);
 		}
-		
 		for (int i = 0; i < listaRegistros.size(); i++) {
 			AccesoVehiculoInformacionDto avIntance= AccesoVehiculoInformacionDto.Builder.newInstance()
 					.withIdUsuario(listaUsuario.get(i).getIdUsuario())

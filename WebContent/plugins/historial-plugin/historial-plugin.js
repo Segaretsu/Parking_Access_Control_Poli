@@ -27,8 +27,8 @@ app.controller("historialController", ['$scope', '$http', function($scope, $http
 		if(sessionStorage.getItem('parametrosBusqueda')) {
 			let criterioBusqueda = JSON.parse(sessionStorage.getItem('parametrosBusqueda'));
 			ctx.placa = criterioBusqueda.placa;
-			ctx.fechaInicio = new Date(criterioBusqueda.fechaInicio.substring(0,10));
-			ctx.fechaFin =  new Date(criterioBusqueda.fechaFin.substring(0,10));
+			ctx.fechaInicio = new Date(criterioBusqueda.fechaInicio.substring(0,10).replace(/-/g, '\/'));
+			ctx.fechaFin =  new Date(criterioBusqueda.fechaFin.substring(0,10).replace(/-/g, '\/'));
 			ctx.consultarInformacion();
 			sessionStorage.removeItem('parametrosBusqueda');
 		} else {

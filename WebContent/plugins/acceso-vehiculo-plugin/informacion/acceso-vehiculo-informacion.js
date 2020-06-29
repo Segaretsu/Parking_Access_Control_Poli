@@ -47,7 +47,7 @@ app.controller("accesoVehiculoController", ['$scope', '$http', function($scope, 
 		let parametrosBusqueda = {
 			'placa': ctx.listaVehiculosDentro[index].placa,
 			'fechaInicio': ctx.listaVehiculosDentro[index].horaEntrada,
-			'fechaFin': ctx.listaVehiculosDentro[index].horaSalida
+			'fechaFin': ctx.listaVehiculosDentro[index].horaEntrada
 		};
 		sessionStorage.setItem('parametrosBusqueda', JSON.stringify(parametrosBusqueda));
 		window.location.href = $CONFIG.url + '#!/consulta-historial';
