@@ -73,6 +73,8 @@ public class RegistroServices {
 			VehiculoEntity vehiculoNew = VehiculoEntity.Builder.newInstance()
 					.withIdTipoVehiculo(idTipoVehiculo)
 					.withIdTarjeta(0)
+					.withIdMarca(0)
+					.withModelo("No Registra")
 					.withPlaca(placa)
 					.build();
 			vehiculoDaoImpl.registrarVehiculo(vehiculoNew);
