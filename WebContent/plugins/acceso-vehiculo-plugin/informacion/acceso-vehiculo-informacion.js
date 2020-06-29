@@ -9,6 +9,8 @@ app.controller("accesoVehiculoController", ['$scope', '$http', function($scope, 
 	/*Decalracion metodos*/
 	ctx.listarVehiculosDentro = listarVehiculosDentro;
 	ctx.init = init;
+	ctx.verDetalleVehiculoDentro = verDetalleVehiculoDentro;
+	ctx.verDetalleVehiculoFuera = verDetalleVehiculoFuera;
 	/*Definicion metodos*/
 	function init(){
 		ctx.cantidadDentro = 5;
@@ -20,7 +22,6 @@ app.controller("accesoVehiculoController", ['$scope', '$http', function($scope, 
 	function listarVehiculosDentro($cantidadDatos, $vehiculosDentro ){
 		$http.get('/Parking_Access_Control_Poli/Parking-back/acceso-vehiculo/listarVehiculos/' + $cantidadDatos + '/' + $vehiculosDentro ).then(function(response) {
 			console.log(response)
-			//debugger;
 			if (!(typeof response.data === "undefined")) {
 				if($vehiculosDentro){
 					ctx.cantidadDentro = $cantidadDatos;
@@ -37,9 +38,30 @@ app.controller("accesoVehiculoController", ['$scope', '$http', function($scope, 
 				}
 			}
 		}).catch(function(){
-			//debugger;
 			console.log("Se nos cayo el sv");
 		});
+	}
+	
+	function verDetalleVehiculoDentro (index) {
+		index = index - 1;
+		let parametrosBusqueda = {
+			'placa': ctx.listaVehiculosDentro[index].placa,
+			'fechaInicio': ctx.listaVehiculosDentro[index].horaEntrada,
+			'fechaFin': ctx.listaVehiculosDentro[index].horaSalida
+		};
+		sessionStorage.setItem('parametrosBusqueda', JSON.stringify(parametrosBusqueda));
+		window.location.href = $CONFIG.url + '#!/consulta-historial';
+	}
+	
+	function verDetalleVehiculoFuera (index) {
+		index = index - 1;
+		let parametrosBusqueda = {
+			'placa': ctx.listaVehiculosFuera[index].placa,
+			'fechaInicio': ctx.listaVehiculosFuera[index].horaEntrada,
+			'fechaFin': ctx.listaVehiculosFuera[index].horaSalida
+		};
+		sessionStorage.setItem('parametrosBusqueda', JSON.stringify(parametrosBusqueda));
+		window.location.href = $CONFIG.url + '#!/consulta-historial';
 	}
 	
 	/*Implementacion metodos*/

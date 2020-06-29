@@ -1,6 +1,7 @@
 package co.com.poli.parking.services;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -12,10 +13,11 @@ import javax.ws.rs.core.MediaType;
 
 import com.sun.jmx.snmp.Timestamp;
 
-import co.com.poli.parking.dao.impl.RegistroDaoImplm;
+import co.com.poli.parking.dao.impl.RegistroDaoImpl;
 import co.com.poli.parking.dao.impl.TarjetaDaoImpl;
 import co.com.poli.parking.dao.impl.UsuarioDaoImpl;
 import co.com.poli.parking.dao.impl.VehiculoDaoImpl;
+import co.com.poli.parking.models.dto.FechasRegistrosDto;
 import co.com.poli.parking.models.entity.RegistroEntity;
 import co.com.poli.parking.models.entity.TarjetaEntity;
 import co.com.poli.parking.models.entity.UsuarioEntity;
@@ -41,7 +43,7 @@ public class RegistroServices {
 //				.build();
 		
 		
-		RegistroDaoImplm registroDaoImpl = new RegistroDaoImplm();
+		RegistroDaoImpl registroDaoImpl = new RegistroDaoImpl();
 		if(registroDaoImpl.registrarRegistro(registro)) {
 			return registro.getIdRegistro();
 		} else {
@@ -82,7 +84,7 @@ public class RegistroServices {
 					.withIdEstado(1)
 					.build();
 		}
-		RegistroDaoImplm registroDaoImpl = new RegistroDaoImplm();
+		RegistroDaoImpl registroDaoImpl = new RegistroDaoImpl();
 		if(registroDaoImpl.registrarRegistro(registro)) {
 			return registro.getIdRegistro();
 		} else {
@@ -99,7 +101,7 @@ public class RegistroServices {
 	public int registrarSalida(@PathParam("placa") String placa) {
 		VehiculoDaoImpl vehiculoDaoImpl = new VehiculoDaoImpl();
 		VehiculoEntity vehiculo = vehiculoDaoImpl.getVehiculoByPlaca(placa);
-		RegistroDaoImplm registroDaoImpl = new RegistroDaoImplm();
+		RegistroDaoImpl registroDaoImpl = new RegistroDaoImpl();
 		RegistroEntity registro = registroDaoImpl.getUltimoRegistroByIdVehiculo(vehiculo.getIdVehiculo());
 		registro.setIdEstado(2);
 		registro.setFechaSalida(new java.sql.Timestamp(new java.util.Date().getTime()));
@@ -109,5 +111,19 @@ public class RegistroServices {
 		else {
 			return 0;
 		}
+	}
+	
+	/**
+	 * URL Ejemplo: http://localhost:8080/Parking_Access_Control_Poli/Parking-back/registro/fechas/p/asd123/FI/2020-01-01/FF/2020-12-31
+	 */
+	@GET
+	@Path("fechas/p/{placa}/FI/{fechaInicio}/FF/{fechaFin}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<FechasRegistrosDto> getListaFechas(@PathParam("placa") String placa, @PathParam("fechaInicio") String fechaInicio, 
+			@PathParam("fechaFin") String fechaFin) {
+		VehiculoDaoImpl vehiculoDaoImpl = new VehiculoDaoImpl();
+		VehiculoEntity vehiculo = vehiculoDaoImpl.getVehiculoByPlaca(placa);
+		RegistroDaoImpl registroDaoImpl = new RegistroDaoImpl();
+		return registroDaoImpl.getListaFechasRegistros(vehiculo.getIdVehiculo(), fechaInicio, fechaFin);
 	}
 }

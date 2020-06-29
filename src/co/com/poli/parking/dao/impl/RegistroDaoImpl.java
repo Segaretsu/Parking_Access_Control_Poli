@@ -12,10 +12,11 @@ import java.util.List;
 
 import co.com.poli.parking.connections.ConnectionDataBase;
 import co.com.poli.parking.dao.RegistroDao;
+import co.com.poli.parking.models.dto.FechasRegistrosDto;
 import co.com.poli.parking.models.entity.RegistroEntity;
 import co.com.poli.parking.models.entity.TipoDocumentoEntity;
 
-public class RegistroDaoImplm implements RegistroDao {
+public class RegistroDaoImpl implements RegistroDao {
 
 	@Override
 	public boolean registrarRegistro(RegistroEntity registro) {
@@ -54,9 +55,9 @@ public class RegistroDaoImplm implements RegistroDao {
 		ConnectionDataBase conexion = new ConnectionDataBase();
 		String query = null;
 		if (vehiculoDentro) {
-			query = "SELECT * FROM `registros` WHERE idEstado = '1' ORDER BY fechaEntrada DESC LIMIT " + cantidadDatos;
+			query = "SELECT * FROM registros WHERE idEstado = '1' ORDER BY fechaEntrada DESC LIMIT " + cantidadDatos;
 		} else {
-			query = "SELECT * FROM `registros` WHERE idEstado = '2' ORDER BY fechaEntrada DESC LIMIT " + cantidadDatos;
+			query = "SELECT * FROM registros WHERE idEstado = '2' ORDER BY fechaEntrada DESC LIMIT " + cantidadDatos;
 		}
 
 		List<RegistroEntity> listaRegistro = new LinkedList<RegistroEntity>();
@@ -65,9 +66,12 @@ public class RegistroDaoImplm implements RegistroDao {
 				ResultSet rs = st.executeQuery(query)) {
 			while (rs.next()) {
 				RegistroEntity registro = RegistroEntity.Builder.newInstance().withIdRegistro(rs.getInt("idRegistro"))
-						.withIdVehiculo(rs.getInt("idVehiculo")).withIdTarjeta(rs.getInt("idTarjeta"))
+						.withIdVehiculo(rs.getInt("idVehiculo"))
+						.withIdTarjeta(rs.getInt("idTarjeta"))
 						.withFechaEntrada(rs.getTimestamp("fechaEntrada"))
-						.withFechaSalida(rs.getTimestamp("fechaSalida")).withIdEstado(rs.getInt("idEstado")).build();
+						.withFechaSalida(rs.getTimestamp("fechaSalida"))
+						.withIdEstado(rs.getInt("idEstado"))
+						.build();
 				listaRegistro.add(registro);
 			}
 		} catch (SQLException sqlex) {
@@ -137,24 +141,22 @@ public class RegistroDaoImplm implements RegistroDao {
 	}
 
 	@Override
-	public List<RegistroEntity> getListaFechasRegistros(int idVehiculo, int cantidad) {
+	public List<FechasRegistrosDto> getListaFechasRegistros (int idVehiculo, String fechaInicio, String fechaFin) {
 		ConnectionDataBase conexion = new ConnectionDataBase();
-		String query = null;
-		query = "SELECT idRegistro, idVehiculo, idTarjeta, fechaEntrada, fechaSalida, idEstado FROM registros WHERE idVehiculo = '"
-				+ idVehiculo + "' ORDER BY idRegistro DESC LIMIT " + cantidad;
-		List<RegistroEntity> registros = new LinkedList<RegistroEntity>();
+		String query = "SELECT idRegistro, idVehiculo, idTarjeta, fechaEntrada, fechaSalida, idEstado FROM registros WHERE idVehiculo = " + idVehiculo 
+				+ " AND ((fechaSalida <= '" + fechaFin + "' AND fechaEntrada >= '" + fechaInicio + "')"
+				+ " OR fechaSalida BETWEEN '" + fechaInicio + "' AND '" + fechaFin + "'"
+				+ " OR fechaEntrada BETWEEN '" + fechaInicio + "' AND '" + fechaFin + "')";
+		List<FechasRegistrosDto> fechas = new LinkedList<FechasRegistrosDto>();
 		try (Connection con = conexion.getCon();
 				Statement st = con.createStatement();
 				ResultSet rs = st.executeQuery(query)) {
 			while (rs.next()) {
-				RegistroEntity registro = RegistroEntity.Builder.newInstance()
-						.withIdRegistro(rs.getInt("idRegistro"))
-						.withIdVehiculo(rs.getInt("idVehiculo"))
-						.withIdTarjeta(rs.getInt("idTarjeta"))
-						.withFechaEntrada(rs.getTimestamp("fechaEntrada"))
+				FechasRegistrosDto fecha = FechasRegistrosDto.Builder.newInstance()
+						.withFechaIngreso(rs.getTimestamp("fechaEntrada"))
 						.withFechaSalida(rs.getTimestamp("fechaSalida"))
-						.withIdEstado(rs.getInt("idEstado")).build();
-				registros.add(registro);
+						.build();
+				fechas.add(fecha);
 			}
 		} catch (SQLException sqlex) {
 			System.out.println("Clase: " + this.getClass().getName() + "\nError SQL: " + sqlex.getMessage());
@@ -163,7 +165,7 @@ public class RegistroDaoImplm implements RegistroDao {
 			System.out.println("Clase: " + this.getClass().getName() + "\nError: " + ex.getMessage());
 			return null;
 		}
-		return registros;
+		return (fechas.size() > 0)? fechas : null;
 	}
 
 }

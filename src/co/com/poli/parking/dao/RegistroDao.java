@@ -2,6 +2,9 @@ package co.com.poli.parking.dao;
 
 import java.util.List;
 
+import java.sql.Timestamp;
+
+import co.com.poli.parking.models.dto.FechasRegistrosDto;
 import co.com.poli.parking.models.entity.RegistroEntity;
 
 public interface RegistroDao {
@@ -14,6 +17,6 @@ public interface RegistroDao {
 	
 	public RegistroEntity getUltimoRegistroByIdVehiculo (int idVehiculo);
 	
-	public List<RegistroEntity> getListaFechasRegistros (int idVehiculo, int cantidad);
+	public List<FechasRegistrosDto> getListaFechasRegistros (int idVehiculo, String fechaInicio, String fechaFin);
 	
 }

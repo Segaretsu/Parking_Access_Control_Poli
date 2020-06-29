@@ -45,10 +45,10 @@ public class VehiculoServices {
 	}
 	
 	/**
-	 * URL Ejemplo: http://localhost:8080/Parking_Access_Control_Poli/Parking-back/usuario/consultar/idUsuario/12
+	 * URL Ejemplo: http://localhost:8080/Parking_Access_Control_Poli/Parking-back/vehiculo/consultar/placa/asd123
 	 */
 	@GET
-	@Path("consultar/idVehiculo/{placa}")
+	@Path("consultar/placa/{placa}")
 	@Produces("application/json")
 	public VehiculoEntity consultarVehiculoByPlaca(@PathParam("placa") String placa) {
 		VehiculoDaoImpl vehiculoDaoImpl = new VehiculoDaoImpl();

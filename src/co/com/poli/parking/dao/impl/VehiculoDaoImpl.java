@@ -26,7 +26,7 @@ import co.com.poli.parking.models.entity.VehiculoEntity;
 
 public class VehiculoDaoImpl implements VehiculoDao{
     
-	private RegistroDaoImplm registroDaoImplm = new RegistroDaoImplm();
+	private RegistroDaoImpl registroDaoImplm = new RegistroDaoImpl();
 	private UsuarioDaoImpl usuarioDaoImpl = new UsuarioDaoImpl();
 	private TiposDaoImpl tipoDaoImpl = new TiposDaoImpl();
 	
@@ -136,6 +136,7 @@ public class VehiculoDaoImpl implements VehiculoDao{
 		List<AccesoVehiculoInformacionDto> AVI = new ArrayList<AccesoVehiculoInformacionDto>();
 		List<TipoPerfilEntity> listaTipoPerfil = new LinkedList<TipoPerfilEntity>();
 		
+		//listaRegistros.forEach(e -> System.out.println("" + e.getFechaEntrada()));
 		for (RegistroEntity registro: listaRegistros) {
 			VehiculoEntity vehiculoEntity = this.getVehiculoById(registro.getIdVehiculo());
 			listaVehiculos.add(vehiculoEntity);
@@ -170,7 +171,6 @@ public class VehiculoDaoImpl implements VehiculoDao{
 					.withHoraEntrada((Timestamp)listaRegistros.get(0).getFechaEntrada())
 					.withHoraSalida((Timestamp)listaRegistros.get(0).getFechaSalida())
 					.build();
-			
 			AVI.add(avIntance);
 		}
 		

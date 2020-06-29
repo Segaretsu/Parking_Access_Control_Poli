@@ -5,30 +5,33 @@
 		<div class="form-group col-md-12 row">
 		    <div class="form-group col-md-3">
 				<label for="numeroDocumento">Placa:</label> <input
-								type="text" class="form-control" id="numeroDocumento">
+								type="text" class="form-control" id="numeroDocumento" placeholder="ABC123"
+								ng-model="placa">
 		    </div>
 		    <div class="form-group col-md-3">
-		         <label for="fechaEntrada">Fecha de entrada:</label> <input
-								type="date" class="form-control" id="fechaEntrada">
+		         <label for="fechaInicio">Fecha de entrada:</label> <input
+								type="date" class="form-control" id="fechaInicio"
+								ng-model="fechaInicio">
 		    </div>
 		    <div class="form-group col-md-3">
-		        <label for="fechaSalida">Fecha de salida:</label> <input
-								type="date" class="form-control" id="fechaSalida">
+		        <label for="fechaFin">Fecha de salida:</label> <input
+								type="date" class="form-control" id="fechaFin"
+								ng-model="fechaFin">
 		    </div>
 		    <div class="form-group col-md-3">
 		    <label for="fechaEntrada" id="blanco">Buscar</label>
-		        <button type="button" class="btn btn-outline-primary">Buscar</button>
+		        <button type="button" class="btn btn-outline-primary" ng-click="consultarInformacion()">Buscar</button>
 		    </div>
 		</div>
-		<div class="form-group col-md-12 row">
+		<div class="form-group col-md-12 row" ng-if="busquedaSeEjecuto">
 			<div class="form-group col-md-6">
 			   <div class="form-group col-md-12 row">
-				 <div class="form-group col-md-3">
-				   <span class="material-icons color-icono-tv iconoHistorial derecha">directions_car</span>
+				 <div class="form-group col-md-12">
+				   <span class="material-icons color-icono-tv iconoHistorial derecha">{{informacionVehiculo.tipoVehiculo.nombreicono}}</span>
 				 </div>
 				 <div class="form-group col-md-6">
-				      <label for="fechaSalida"><strong>Tipo vehiculo:</strong> Carro</label>
-				      <label for="fechaSalida"><strong>Propietario:</strong> Jose Felipe Perez Perez</label>   
+				      <label for="fechaSalida"><strong>Tipo vehiculo:</strong> {{informacionVehiculo.tipoVehiculo.descripcion}}</label>
+				      <label for="fechaSalida"><strong>Propietario:</strong> {{informacionUsuario.nombre}} {{informacionUsuario.apellidos}}</label>   
 				 </div>
 		     </div>
 			</div>
@@ -45,10 +48,10 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="vehiculosDentro in listaVehiculosDentro">
-								<th scope="row">{{vehiculosDentro.numero}}</th>
-								<td>{{vehiculosDentro.placa}}</td>
-								<td>{{vehiculosDentro.nombreColor}}</td>
+							<tr ng-repeat="fecha in listaFechas">
+								<th scope="row">{{fecha.numero}}</th>
+								<td>{{fecha.fechaIngreso}}</td>
+								<td>{{fecha.fechaSalida}}</td>
 							</tr>
 						</tbody>
 					</table>
