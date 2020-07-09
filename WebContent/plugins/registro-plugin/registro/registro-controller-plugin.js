@@ -96,7 +96,7 @@ app.controller("registroController", ['$scope', '$http', function($scope, $http)
 			});
 		} else {
 			alert('Ingrese la tarjeta');		}
-	}
+		}
 	
 	function registrarVehiculo ($vehiculo) {
 		$http.post('/Parking_Access_Control_Poli/Parking-back/vehiculo/crear', $vehiculo).then(function(response) {
@@ -105,6 +105,9 @@ app.controller("registroController", ['$scope', '$http', function($scope, $http)
 				alert('Vehículo no registrado');
 			} else if (response.data == "-1") {
 				alert('Vehículo existente, no se tuvo que registrar');
+			} else {
+				alert('Se registro exitosamente');
+				window.location.href = $CONFIG.url;
 			}
 		}).catch(function(){
 			alert("Se nos cayo el sv");
